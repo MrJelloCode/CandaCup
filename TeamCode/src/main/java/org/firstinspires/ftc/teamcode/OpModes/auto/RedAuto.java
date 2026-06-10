@@ -16,6 +16,8 @@ import org.firstinspires.ftc.teamcode.subsystem.FlyWheelSubsystem;
 import org.firstinspires.ftc.teamcode.subsystem.IntakeSubsystem;
 import org.firstinspires.ftc.teamcode.subsystem.TurretSubsystem;
 
+import org.firstinspires.ftc.teamcode.subsystem.PathStorage;
+
 
 @Autonomous(name = "RedAuto")
 public class RedAuto extends LinearOpMode {
@@ -270,6 +272,10 @@ public class RedAuto extends LinearOpMode {
                 }
                 break;
         }
+
+        // Update path storage to take current app
+        PathStorage.setPose(follower.getPose());
+
     }
 
     /**
@@ -279,6 +285,8 @@ public class RedAuto extends LinearOpMode {
         pathState = pState;
         pathTimer.resetTimer();
     }
+
+
 
 
     public void buildPaths() {
@@ -416,4 +424,10 @@ public class RedAuto extends LinearOpMode {
                 .setReversed()
                 .build();
     }
+
+
+
 }
+
+
+

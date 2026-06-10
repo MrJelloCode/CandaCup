@@ -15,6 +15,7 @@ import org.firstinspires.ftc.teamcode.subsystem.DrivetrainSubsystem;
 import org.firstinspires.ftc.teamcode.subsystem.FlyWheelSubsystem;
 import org.firstinspires.ftc.teamcode.subsystem.IntakeSubsystem;
 import org.firstinspires.ftc.teamcode.subsystem.LimelightSubsystem;
+import org.firstinspires.ftc.teamcode.subsystem.PathStorage;
 import org.firstinspires.ftc.teamcode.subsystem.TurretSubsystem;
 
 @Configurable
@@ -27,6 +28,7 @@ public class BlueTeleOp extends OpMode {
     private IntakeSubsystem intakeSubsystem;
     private TurretSubsystem turretSubsystem;
     private static TelemetryManager panelsTelemetry;
+
 
 //    private RevBlinkinLedDriver blinkin;
 
@@ -54,6 +56,9 @@ private Follower follower;
 
         ));
 
+
+        follower.setPose(PathStorage.getPose()); // Restore auto pose ONCE
+
     }
 
     @Override
@@ -77,6 +82,11 @@ private Follower follower;
 //        }
 
         Pose pose = follower.getPose();
+
+        // RESET POSE IN CORNER
+        if(gamepad1.start){
+            follower.setPose(new Pose(10,10,90));
+        }
 
         // AUTO AIM
         turretSubsystem.update(pose, TeleOpConstants.Turret.BLUE_TARGET_X, TeleOpConstants.Turret.BLUE_TARGET_Y); // ← your real target coords

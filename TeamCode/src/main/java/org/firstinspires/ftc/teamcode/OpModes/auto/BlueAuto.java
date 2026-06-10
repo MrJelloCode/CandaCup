@@ -14,6 +14,7 @@ import org.firstinspires.ftc.teamcode.constants.TeleOpConstants;
 import org.firstinspires.ftc.teamcode.pedroPathing.Constants;
 import org.firstinspires.ftc.teamcode.subsystem.FlyWheelSubsystem;
 import org.firstinspires.ftc.teamcode.subsystem.IntakeSubsystem;
+import org.firstinspires.ftc.teamcode.subsystem.PathStorage;
 import org.firstinspires.ftc.teamcode.subsystem.TurretSubsystem;
 
 
@@ -271,6 +272,10 @@ public class BlueAuto extends LinearOpMode {
                 }
                 break;
         }
+
+
+        // Update path storage to take current app
+        PathStorage.setPose(follower.getPose());
     }
 
     /**
