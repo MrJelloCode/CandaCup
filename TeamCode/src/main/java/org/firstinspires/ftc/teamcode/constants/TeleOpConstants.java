@@ -12,6 +12,7 @@ public class TeleOpConstants {
         public static String BACK_LEFT_MOTOR_NAME = "backLeft";
         public static String BACK_RIGHT_MOTOR_NAME = "backRight";
     }
+
 @Configurable
     /* ========== FLYWHEEL ========== */
     public static class Flywheel {
@@ -31,6 +32,7 @@ public class TeleOpConstants {
         public static double CLOSE_VEL = 1500;
         public static double VELOCITY_TOLERANCE = 10;
     }
+
     @Configurable
     /* ========== INTAKE ========== */
     public static class Intake{
