@@ -44,6 +44,28 @@ public class TeleOpConstants {
 
     }
 
+    @Configurable
+    /* ========== HOOD ========== */
+    public static class Hood{
+        public static String HOOD_SERVO_NAME = "hood";
+
+        public static final double[][] LOOKUP_TABLE = {
+
+                {24, 0.05},
+                {36, 0.10},
+                {48, 0.16},
+                {60, 0.23},
+                {72, 0.30},
+                {84, 0.38},
+                {96, 0.46},
+                {108, 0.54},
+                {120, 0.63}
+
+        };
+
+
+    }
+
 
     @Configurable
     /* ========== TURRET ========== */

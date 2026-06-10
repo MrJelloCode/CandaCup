@@ -13,6 +13,7 @@ import org.firstinspires.ftc.teamcode.constants.TeleOpConstants;
 import org.firstinspires.ftc.teamcode.pedroPathing.Constants;
 import org.firstinspires.ftc.teamcode.subsystem.DrivetrainSubsystem;
 import org.firstinspires.ftc.teamcode.subsystem.FlyWheelSubsystem;
+import org.firstinspires.ftc.teamcode.subsystem.HoodSubsystem;
 import org.firstinspires.ftc.teamcode.subsystem.IntakeSubsystem;
 import org.firstinspires.ftc.teamcode.subsystem.LimelightSubsystem;
 import org.firstinspires.ftc.teamcode.subsystem.PathStorage;
@@ -28,6 +29,7 @@ public class RedTeleOp extends OpMode {
     private IntakeSubsystem intakeSubsystem;
     private TurretSubsystem turretSubsystem;
     private static TelemetryManager panelsTelemetry;
+    private HoodSubsystem hoodSubsystem;
 
 //    private RevBlinkinLedDriver blinkin;
 
@@ -45,6 +47,7 @@ public class RedTeleOp extends OpMode {
         flyWheelSubsystem = new FlyWheelSubsystem(hardwareMap,gamepad2);
         intakeSubsystem  = new IntakeSubsystem(hardwareMap, gamepad2);
         turretSubsystem = new TurretSubsystem(hardwareMap);
+        hoodSubsystem = new HoodSubsystem(hardwareMap);
 //        blinkin = hardwareMap.get(RevBlinkinLedDriver.class, "blinkin");
 
         follower = Constants.createFollower(hardwareMap);
@@ -90,7 +93,8 @@ public class RedTeleOp extends OpMode {
         }
 
         // AUTO AIM
-        turretSubsystem.update(pose, TeleOpConstants.Turret.RED_TARGET_X, TeleOpConstants.Turret.RED_TARGET_Y); // ← your real target coords
+        turretSubsystem.update(pose, TeleOpConstants.Turret.RED_TARGET_X, TeleOpConstants.Turret.RED_TARGET_Y);
+        hoodSubsystem.update(pose, TeleOpConstants.Turret.RED_TARGET_X, TeleOpConstants.Turret.RED_TARGET_Y);
 
         // DRIVER OVERRIDE
         if(Math.abs(gamepad2.right_stick_x) > 0.1){
