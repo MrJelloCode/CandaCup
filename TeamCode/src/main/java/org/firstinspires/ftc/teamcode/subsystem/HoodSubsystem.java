@@ -73,4 +73,24 @@ public class HoodSubsystem {
 
         return table[table.length-1][1];
     }
+
+    public void adjust(double amount){
+
+        double pos = hood.getPosition();
+
+        pos += amount;
+
+        pos = Math.max(0.0,
+                Math.min(1.0, pos));
+
+        hood.setPosition(pos);
+    }
+
+    public void telemetry(org.firstinspires.ftc.robotcore.external.Telemetry telemetry){
+
+        telemetry.addLine("------ HOOD ------");
+        telemetry.addData("Position", hood.getPosition());
+    }
+
+
 }
