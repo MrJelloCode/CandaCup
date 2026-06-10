@@ -58,14 +58,21 @@ public class BlueAuto extends LinearOpMode {
         follower = Constants.createFollower(hardwareMap);
         buildPaths();
         follower.setStartingPose(startPose);
-
+        PathStorage.setPose(follower.getPose());
+        telemetry.addData("Pose state in Path Storage", PathStorage.getPose());
+        telemetry.update();
+        //After init
         waitForStart();
         //on start
         opmodeTimer.resetTimer();
         setPathState(0);
 
+
         while (opModeIsActive()) {
             follower.update();
+            PathStorage.setPose(follower.getPose());
+            telemetry.addData("Pose state in Path Storage", PathStorage.getPose());
+
             autonomousPathUpdate();
             intakeSubsystem.teleUpdate();
             flyWheelSubsystem.teleVelocity();
