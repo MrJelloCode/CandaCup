@@ -38,8 +38,8 @@ private Follower follower;
     @Override
     public void init() {
         follower = Constants.createFollower(hardwareMap);
-        follower.setStartingPose(new Pose(TeleOpConstants.Turret.BLUE_START_X,TeleOpConstants.Turret.BLUE_START_Y, TeleOpConstants.Turret.BLUE_START_HEADING) == null ? new Pose() : new Pose(TeleOpConstants.Turret.BLUE_START_X,TeleOpConstants.Turret.BLUE_START_Y, TeleOpConstants.Turret.BLUE_START_HEADING));
-        follower.update();
+//        follower.setStartingPose(new Pose(TeleOpConstants.Turret.BLUE_START_X,TeleOpConstants.Turret.BLUE_START_Y, TeleOpConstants.Turret.BLUE_START_HEADING) == null ? new Pose() : new Pose(TeleOpConstants.Turret.BLUE_START_X,TeleOpConstants.Turret.BLUE_START_Y, TeleOpConstants.Turret.BLUE_START_HEADING));
+//        follower.update();
          panelsTelemetry = PanelsTelemetry.INSTANCE.getTelemetry();
 
         limelightSubsystem = new LimelightSubsystem(hardwareMap);
@@ -60,7 +60,14 @@ private Follower follower;
         ));
 
 
+        follower.setStartingPose(PathStorage.getPose()); // Restore auto pose ONCE
+        follower.update();
+        telemetry.addData("PATH CURRENT", PathStorage.getPose());
+        telemetry.update();
+
+
         follower.setPose(PathStorage.getPose()); // Restore auto pose ONCE
+        follower.update();
 
     }
 
@@ -94,7 +101,7 @@ private Follower follower;
         // AUTO AIM
         turretSubsystem.update(pose, TeleOpConstants.Turret.BLUE_TARGET_X, TeleOpConstants.Turret.BLUE_TARGET_Y); // ← your real target coords
 
-        hoodSubsystem.update(pose, TeleOpConstants.Turret.BLUE_TARGET_X, TeleOpConstants.Turret.BLUE_TARGET_Y); // ← your real target coords
+//        hoodSubsystem.update(pose, TeleOpConstants.Turret.BLUE_TARGET_X, TeleOpConstants.Turret.BLUE_TARGET_Y); // ← your real target coords
         // DRIVER OVERRIDE
         if(Math.abs(gamepad2.right_stick_x) > 0.1){
             turretSubsystem.manualControl(gamepad2.right_stick_x);
