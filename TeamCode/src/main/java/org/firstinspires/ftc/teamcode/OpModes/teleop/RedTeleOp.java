@@ -63,7 +63,7 @@ public class RedTeleOp extends OpMode {
 
 
         follower.setStartingPose(PathStorage.getPose()); // Restore auto pose ONCE
-        follower.update();
+        //follower.update();
         telemetry.addData("PATH CURRENT", PathStorage.getPose());
         telemetry.update();
         follower.update();

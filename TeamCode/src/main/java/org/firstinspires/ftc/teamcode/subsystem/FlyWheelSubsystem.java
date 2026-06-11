@@ -84,8 +84,8 @@ public class FlyWheelSubsystem {
 
         double power = feedback + feedforward;
 
-        rightFlywheel.setPower(power);
-        leftFlywheel.setPower(power);
+        rightFlywheel.setPower(-power);
+        leftFlywheel.setPower(-power);
     }
 
     public boolean atTargetVelocity(){

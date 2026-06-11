@@ -53,17 +53,20 @@ public class TeleOpConstants {
 
         public static final double[][] LOOKUP_TABLE = {
 
-                {24, 0.05},
-                {36, 0.10},
-                {48, 0.16},
-                {60, 0.23},
-                {72, 0.30},
-                {84, 0.38},
-                {96, 0.46},
-                {108, 0.54},
-                {120, 0.63}
+
+                {60, 0.58},
+                {72, 0.56},
+                {84, 0.55},
+                {140, 0.4983},
+
+
+
 
         };
+
+        public static final double HOOD_MAX = 0;
+        public static final double HOOD_MIN= 0;
+
 
 
     }
@@ -75,7 +78,7 @@ public class TeleOpConstants {
         public static final double BLUE_TARGET_X = 0, BLUE_TARGET_Y =144;
         public static final double RED_TARGET_X = 144, RED_TARGET_Y =144;
 
-        public static final double BLUE_START_X = 123.546, BLUE_START_Y =122.109, BLUE_START_HEADING = 37;
+        public static final double BLUE_START_X = 20.454, BLUE_START_Y =122.109, BLUE_START_HEADING = 143;
 
         public static final double RED_START_X = 123.546, RED_START_Y =122.109, RED_START_HEADING = 37;
 
@@ -86,7 +89,7 @@ public class TeleOpConstants {
 
         public static final double GEAR_RATIO = 3.0;
 
-        public static final double MAX_ANGLE = Math.toRadians(180);
+        public static final double MAX_ANGLE = Math.toRadians(120);
         public static final double MIN_ANGLE = Math.toRadians(-135);
 
 
