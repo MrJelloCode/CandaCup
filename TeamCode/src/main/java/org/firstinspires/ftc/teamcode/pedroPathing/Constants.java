@@ -17,9 +17,7 @@ public class Constants {
         .mass(12.791)
             .headingPIDFCoefficients(new PIDFCoefficients(1.5, 0, 0.1, 0))
             .predictiveBrakingCoefficients(new PredictiveBrakingCoefficients(0.1, 0.08355854415120575, 0.002296192554373277))
-            .centripetalScaling(0)
-
-            ;
+            .centripetalScaling(0);
 
 
     public static PathConstraints pathConstraints = new PathConstraints(0.98, 100, 1, 1);
@@ -49,7 +47,7 @@ public class Constants {
 
             .leftPodY(5.801181)
             .rightPodY(-5.781)
-            .strafePodX(-3.9)
+            .strafePodX(-5)
             .leftEncoder_HardwareMapName("frontLeft")
             .rightEncoder_HardwareMapName("backRight")
             .strafeEncoder_HardwareMapName("frontRight")

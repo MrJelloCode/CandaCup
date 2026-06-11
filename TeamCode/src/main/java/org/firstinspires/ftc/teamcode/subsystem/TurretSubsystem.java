@@ -79,14 +79,17 @@ public class TurretSubsystem {
 
         double ticks = turretMotor.getCurrentPosition();
 
-        double motorRevs =
-                ticks / TeleOpConstants.Turret.TICKS_PER_MOTOR_REV;
+        double motorRevs = ticks / TeleOpConstants.Turret.TICKS_PER_MOTOR_REV;
 
-        double turretRevs =
-                motorRevs / TeleOpConstants.Turret.GEAR_RATIO;
+        double turretRevs = motorRevs / TeleOpConstants.Turret.GEAR_RATIO;
 
-        turretAngle = turretRevs * 2 * Math.PI
-                + TeleOpConstants.Turret.TURRET_OFFSET;
+        turretAngle = turretRevs * 2 * Math.PI + TeleOpConstants.Turret.TURRET_OFFSET;
+
+        while (turretAngle > Math.PI)
+            turretAngle -= 2 * Math.PI;
+
+        while (turretAngle < -Math.PI)
+            turretAngle += 2 * Math.PI;
     }
 
     /* =========  WRAP ========= */
@@ -111,11 +114,16 @@ public class TurretSubsystem {
 
         double error = turretTargetAngle - turretAngle;
 
+        while(error > Math.PI)
+            error -= 2 * Math.PI;
+
+        while(error < -Math.PI)
+            error += 2 * Math.PI;
+
         integral += error;
         double derivative = error - lastError;
 
-        double output =
-                TeleOpConstants.Turret.KP * error +
+        double output = TeleOpConstants.Turret.KP * error +
                         TeleOpConstants.Turret.KI * integral +
                         TeleOpConstants.Turret.KD * derivative;
 
