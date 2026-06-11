@@ -66,8 +66,8 @@ private Follower follower;
         telemetry.update();
 
 
-        follower.setPose(PathStorage.getPose()); // Restore auto pose ONCE
-        follower.update();
+//        follower.setPose(PathStorage.getPose()); // Restore auto pose ONCE
+//        follower.update();
 
     }
 
@@ -123,6 +123,12 @@ private Follower follower;
         //telemtry
         turretSubsystem.telemetry(telemetry);
         hoodSubsystem.telemetry(telemetry);
+
+
+        telemetry.addData("PATH CURRENT", PathStorage.getPose());
+        telemetry.update();
+
+
         telemetry.addData("x", follower.getPose().getX());
         telemetry.addData("y", follower.getPose().getY());
         telemetry.addData("heading", follower.getPose().getHeading());
