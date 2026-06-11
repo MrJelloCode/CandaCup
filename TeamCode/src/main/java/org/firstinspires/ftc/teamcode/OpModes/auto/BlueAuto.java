@@ -51,6 +51,7 @@ public class BlueAuto extends LinearOpMode {
         flyWheelSubsystem = new FlyWheelSubsystem(hardwareMap,gamepad2);
         intakeSubsystem  = new IntakeSubsystem(hardwareMap, gamepad2);
         turretSubsystem = new TurretSubsystem(hardwareMap);
+        turretSubsystem.firstInit();
         pathTimer = new Timer();
         opmodeTimer = new Timer();
         opmodeTimer.resetTimer();

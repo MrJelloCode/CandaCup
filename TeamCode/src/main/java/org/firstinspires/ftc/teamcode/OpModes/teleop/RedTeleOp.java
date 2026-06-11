@@ -39,7 +39,7 @@ public class RedTeleOp extends OpMode {
         follower = Constants.createFollower(hardwareMap);
 //        follower.setStartingPose(new Pose(TeleOpConstants.Turret.RED_START_X,TeleOpConstants.Turret.RED_START_Y, TeleOpConstants.Turret.RED_START_HEADING) == null ? new Pose() : new Pose(TeleOpConstants.Turret.RED_START_X,TeleOpConstants.Turret.RED_START_Y, TeleOpConstants.Turret.RED_START_HEADING));
 
-        follower.update();
+//        follower.update();
 
         panelsTelemetry = PanelsTelemetry.INSTANCE.getTelemetry();
 
@@ -96,6 +96,7 @@ public class RedTeleOp extends OpMode {
             follower.setPose(new Pose(10,10,90));
         }
 
+        follower.update();
         // AUTO AIM
         turretSubsystem.update(pose, TeleOpConstants.Turret.RED_TARGET_X, TeleOpConstants.Turret.RED_TARGET_Y);
         hoodSubsystem.update(pose, TeleOpConstants.Turret.RED_TARGET_X, TeleOpConstants.Turret.RED_TARGET_Y);
@@ -117,7 +118,7 @@ public class RedTeleOp extends OpMode {
         }
 
 
-        follower.update();
+
 
 
 

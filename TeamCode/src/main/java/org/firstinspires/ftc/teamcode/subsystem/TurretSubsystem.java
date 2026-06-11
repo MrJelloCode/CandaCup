@@ -26,9 +26,6 @@ public class TurretSubsystem {
                 DcMotorEx.class,
                 TeleOpConstants.Turret.TURRET_MOTOR_NAME
         );
-
-        turretMotor.setMode(DcMotorEx.RunMode.STOP_AND_RESET_ENCODER);
-        turretMotor.setMode(DcMotorEx.RunMode.RUN_WITHOUT_ENCODER);
     }
 
     /* ========= AUTO AIM ========= */
@@ -106,6 +103,10 @@ public class TurretSubsystem {
             angle += 2 * Math.PI;
 
         return angle;
+    }
+    public void firstInit(){
+        turretMotor.setMode(DcMotorEx.RunMode.STOP_AND_RESET_ENCODER);
+        turretMotor.setMode(DcMotorEx.RunMode.RUN_WITHOUT_ENCODER);
     }
 
     /* ========= PID CONTROLLER ========= */
