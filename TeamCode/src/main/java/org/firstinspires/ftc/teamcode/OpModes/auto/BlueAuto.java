@@ -58,7 +58,8 @@ public class BlueAuto extends LinearOpMode {
         follower = Constants.createFollower(hardwareMap);
         buildPaths();
         follower.setStartingPose(startPose);
-        PathStorage.setPose(follower.getPose());
+        follower.update();
+        PathStorage.setPose(startPose);
         telemetry.addData("Pose state in Path Storage", PathStorage.getPose());
         telemetry.update();
         //After init
@@ -92,8 +93,10 @@ public class BlueAuto extends LinearOpMode {
     public void autonomousPathUpdate() {
         switch (pathState) {
             case 0:
-                follower.followPath(Path1);
-                setPathState(1);
+                if (!follower.isBusy()) {
+                    follower.followPath(Path1);
+                    setPathState(1);
+                }
                 break;
             case 1:
             /* You could check for
@@ -307,11 +310,9 @@ public class BlueAuto extends LinearOpMode {
 
         Path2 = follower.pathBuilder()
                 .addPath(
-                        new BezierCurve(
+                        new BezierLine(
                                 new Pose(53.924, 84.219),
-                                new Pose(44.275, 56.333),
-                                new Pose(32.187, 60.079),
-                                new Pose(8.886, 59.377)
+                                new Pose(16.760, 83.847)
                         )
                 )
                 .setTangentHeadingInterpolation()
@@ -320,8 +321,8 @@ public class BlueAuto extends LinearOpMode {
         Path3 = follower.pathBuilder()
                 .addPath(
                         new BezierLine(
-                                new Pose(8.886, 59.377),
-                                new Pose(54.286, 84.247)
+                                new Pose(16.760, 83.847),
+                                new Pose(53.948, 83.993)
                         )
                 )
                 .setTangentHeadingInterpolation()
@@ -330,98 +331,43 @@ public class BlueAuto extends LinearOpMode {
 
         Path4 = follower.pathBuilder()
                 .addPath(
-                        new BezierCurve(
-                                new Pose(54.286, 84.247),
-                                new Pose(26.475, 51.840),
-                                new Pose(11.773, 61.604)
+                        new BezierLine(
+                                new Pose(53.948, 83.993),
+                                new Pose(51.513, 59.794)
                         )
                 )
                 .setTangentHeadingInterpolation()
                 .build();
 
-        Path8 = follower.pathBuilder()
+        Path5 = follower.pathBuilder()
                 .addPath(
                         new BezierLine(
-                                new Pose(11.773, 61.604),
-                                new Pose(54.112, 84.087)
+                                new Pose(51.513, 59.794),
+                                new Pose(8.592, 59.090)
                         )
                 )
                 .setTangentHeadingInterpolation()
-                .setReversed()
                 .build();
 
         Path6 = follower.pathBuilder()
                 .addPath(
-                        new BezierCurve(
-                                new Pose(54.112, 84.087),
-                                new Pose(26.888, 51.781),
-                                new Pose(11.712, 61.581)
+                        new BezierLine(
+                                new Pose(8.592, 59.090),
+                                new Pose(51.046, 59.348)
                         )
                 )
                 .setTangentHeadingInterpolation()
+                .setReversed()
                 .build();
 
         Path7 = follower.pathBuilder()
                 .addPath(
                         new BezierLine(
-                                new Pose(11.712, 61.581),
-                                new Pose(54.091, 84.135)
+                                new Pose(51.046, 59.348),
+                                new Pose(54.328, 84.421)
                         )
                 )
                 .setTangentHeadingInterpolation()
-                .setReversed()
-                .build();
-
-        Path8 = follower.pathBuilder()
-                .addPath(
-                        new BezierLine(
-                                new Pose(54.091, 84.135),
-                                new Pose(14.381, 83.797)
-                        )
-                )
-                .setTangentHeadingInterpolation()
-                .build();
-
-        Path9 = follower.pathBuilder()
-                .addPath(
-                        new BezierLine(
-                                new Pose(14.381, 83.797),
-                                new Pose(54.171, 84.175)
-                        )
-                )
-                .setTangentHeadingInterpolation()
-                .setReversed()
-                .build();
-
-        Path10 = follower.pathBuilder()
-                .addPath(
-                        new BezierLine(
-                                new Pose(54.171, 84.175),
-                                new Pose(41.819, 35.613)
-                        )
-                )
-                .setTangentHeadingInterpolation()
-                .build();
-
-        Path11 = follower.pathBuilder()
-                .addPath(
-                        new BezierLine(
-                                new Pose(41.819, 35.613),
-                                new Pose(9.394, 35.286)
-                        )
-                )
-                .setTangentHeadingInterpolation()
-                .build();
-
-        Path12 = follower.pathBuilder()
-                .addPath(
-                        new BezierLine(
-                                new Pose(9.394, 35.286),
-                                new Pose(54.147, 84.181)
-                        )
-                )
-                .setTangentHeadingInterpolation()
-                .setReversed()
                 .build();
     }
 }

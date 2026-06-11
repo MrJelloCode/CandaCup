@@ -59,7 +59,8 @@ public class RedAuto extends LinearOpMode {
         follower = Constants.createFollower(hardwareMap);
         buildPaths();
         follower.setStartingPose(startPose);
-        PathStorage.setPose(follower.getPose());
+        follower.update();
+        PathStorage.setPose(startPose);
         telemetry.addData("Pose state in Path Storage", PathStorage.getPose());
         telemetry.update();
         waitForStart();
