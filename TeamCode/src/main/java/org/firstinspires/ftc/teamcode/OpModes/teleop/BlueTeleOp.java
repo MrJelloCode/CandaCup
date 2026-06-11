@@ -50,14 +50,7 @@ private Follower follower;
         hoodSubsystem = new HoodSubsystem(hardwareMap);
 //        blinkin = hardwareMap.get(RevBlinkinLedDriver.class, "blinkin");
 
-        follower = Constants.createFollower(hardwareMap);
-        follower.setStartingPose(new Pose(
-                TeleOpConstants.Turret.BLUE_START_X,
-                TeleOpConstants.Turret.BLUE_START_Y,
-                Math.toRadians(TeleOpConstants.Turret.BLUE_START_HEADING)
 
-
-        ));
 
 
         follower.setStartingPose(PathStorage.getPose()); // Restore auto pose ONCE
@@ -95,7 +88,7 @@ private Follower follower;
 
         // RESET POSE IN CORNER
         if(gamepad1.start){
-            follower.setPose(new Pose(10,10,90));
+            follower.setPose(new Pose(10,10,Math.toRadians(90)));
         }
 
         // AUTO AIM
