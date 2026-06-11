@@ -53,16 +53,19 @@ public class RedTeleOp extends OpMode {
 
         follower = Constants.createFollower(hardwareMap);
 
-        follower.setStartingPose(new Pose(
-                TeleOpConstants.Turret.RED_START_X,
-                TeleOpConstants.Turret.RED_START_Y,
-                Math.toRadians(TeleOpConstants.Turret.RED_START_HEADING)
+//        follower.setStartingPose(new Pose(
+//                TeleOpConstants.Turret.RED_START_X,
+//                TeleOpConstants.Turret.RED_START_Y,
+//                Math.toRadians(TeleOpConstants.Turret.RED_START_HEADING)
+//
+//
+//        ));
 
 
-        ));
-
-
-        follower.setPose(PathStorage.getPose()); // Restore auto pose ONCE
+        follower.setStartingPose(PathStorage.getPose()); // Restore auto pose ONCE
+        follower.update();
+        telemetry.addData("PATH CURRENT", PathStorage.getPose());
+        telemetry.update();
         follower.update();
     }
 
