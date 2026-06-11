@@ -52,15 +52,10 @@ public class TeleOpConstants {
         public static String HOOD_SERVO_NAME = "hood";
 
         public static final double[][] LOOKUP_TABLE = {
-
-
                 {60, 0.58},
                 {72, 0.56},
                 {84, 0.55},
                 {140, 0.4983},
-
-
-
 
         };
 
