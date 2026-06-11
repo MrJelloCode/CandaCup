@@ -38,6 +38,7 @@ public class RedTeleOp extends OpMode {
     public void init() {
         follower = Constants.createFollower(hardwareMap);
         follower.setStartingPose(new Pose(TeleOpConstants.Turret.RED_START_X,TeleOpConstants.Turret.RED_START_Y, TeleOpConstants.Turret.RED_START_HEADING) == null ? new Pose() : new Pose(TeleOpConstants.Turret.RED_START_X,TeleOpConstants.Turret.RED_START_Y, TeleOpConstants.Turret.RED_START_HEADING));
+
         follower.update();
 
         panelsTelemetry = PanelsTelemetry.INSTANCE.getTelemetry();

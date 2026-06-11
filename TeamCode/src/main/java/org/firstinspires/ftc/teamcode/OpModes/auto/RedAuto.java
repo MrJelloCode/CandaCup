@@ -21,7 +21,7 @@ import org.firstinspires.ftc.teamcode.subsystem.PathStorage;
 
 @Autonomous(name = "RedAuto")
 public class RedAuto extends LinearOpMode {
-    private final Pose startPose = new Pose(90.076, 84.219, Math.toRadians(40));// Start Pose of our robot. This is against the goal facing AWAY
+    private final Pose startPose = new Pose(123.546, 122.109, Math.toRadians(37));// Start Pose of our robot. This is against the goal facing AWAY
     private final Pose scorePose = new Pose(54.112, 84.087); // Scoring Pose of our robot.
     private final Pose drinkFromFountain = new Pose(11.803, 61.585, Math.toRadians(146)); // Highest (First Set) of Artifacts from the Spike Mark.
     private final Pose pickup2Pose = new Pose(12, 60, Math.toRadians(180)); // Middle (Second Set) of Artifacts from the Spike Mark.
@@ -296,10 +296,6 @@ public class RedAuto extends LinearOpMode {
 
     public void buildPaths() {
 
-
-
-
-
         Path1 = follower.pathBuilder()
                 .addPath(
                         new BezierLine(
@@ -344,7 +340,7 @@ public class RedAuto extends LinearOpMode {
                 .setTangentHeadingInterpolation()
                 .build();
 
-        Path5 = follower.pathBuilder()
+        Path8 = follower.pathBuilder()
                 .addPath(
                         new BezierLine(
                                 new Pose(132.227, 61.604),
@@ -429,6 +425,7 @@ public class RedAuto extends LinearOpMode {
                 .setReversed()
                 .build();
     }
+
 
 
 
