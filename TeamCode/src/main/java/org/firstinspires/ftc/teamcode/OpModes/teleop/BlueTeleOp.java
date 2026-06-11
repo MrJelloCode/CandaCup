@@ -52,9 +52,32 @@ private Follower follower;
 
 
 
+        telemetry.addData("x", follower.getPose().getX());
+        telemetry.addData("y", follower.getPose().getY());
+        telemetry.addData("heading", follower.getPose().getHeading());
+        telemetry.update();
 
-        follower.setStartingPose(PathStorage.getPose()); // Restore auto pose ONCE
+
+
+        follower.setPose(PathStorage.getPose()); // Restore auto pose ONCE
+        telemetry.addData("x", follower.getPose().getX());
+        telemetry.addData("y", follower.getPose().getY());
+        telemetry.addData("heading", follower.getPose().getHeading());
+        telemetry.update();
+
+
+
+
         follower.update();
+
+
+        telemetry.addData("x", follower.getPose().getX());
+        telemetry.addData("y", follower.getPose().getY());
+        telemetry.addData("heading", follower.getPose().getHeading());
+        telemetry.update();
+
+
+
         telemetry.addData("PATH CURRENT", PathStorage.getPose());
         telemetry.update();
 
@@ -86,11 +109,12 @@ private Follower follower;
 
         Pose pose = follower.getPose();
 
-        // RESET POSE IN CORNER
-        if(gamepad1.start){
-            follower.setPose(new Pose(10,10,Math.toRadians(90)));
-        }
+//        // RESET POSE IN CORNER
+//        if(gamepad1.start){
+//            follower.setPose(new Pose(10,10,Math.toRadians(90)));
+//        }
 
+        follower.update();
         // AUTO AIM
         turretSubsystem.update(pose, TeleOpConstants.Turret.BLUE_TARGET_X, TeleOpConstants.Turret.BLUE_TARGET_Y); // ← your real target coords
 
@@ -111,11 +135,10 @@ private Follower follower;
             hoodSubsystem.adjust(-0.02);
         }
 
-        follower.update();
 
         //telemtry
-        turretSubsystem.telemetry(telemetry);
-        hoodSubsystem.telemetry(telemetry);
+//        turretSubsystem.telemetry(telemetry);
+//        hoodSubsystem.telemetry(telemetry);
 
 
         telemetry.addData("PATH CURRENT", PathStorage.getPose());
