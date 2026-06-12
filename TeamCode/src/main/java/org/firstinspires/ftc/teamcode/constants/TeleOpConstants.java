@@ -70,6 +70,16 @@ public class TeleOpConstants {
     @Configurable
     /* ========== TURRET ========== */
     public static class Turret {
+
+        public static final double LL_CORRECTION_GAIN = 0.25;
+
+        public static double LL_FILTER = 0.10;
+
+        public static double MAX_TX_FOR_CORRECTION = 10.0;
+
+
+        public static double LL_DECAY = 0.95;
+
         public static final double BLUE_TARGET_X = 0, BLUE_TARGET_Y =144;
         public static final double RED_TARGET_X = 144, RED_TARGET_Y =144;
 

@@ -14,6 +14,7 @@ public class TurretSubsystem {
 
     private double turretAngle = 0;
     private double turretTargetAngle = 0;
+    private double visionCorrection = 0;
 
     private double integral = 0;
     private double lastError = 0;
@@ -30,7 +31,12 @@ public class TurretSubsystem {
 
     /* ========= AUTO AIM ========= */
 
-    public void update(Pose robotPose, double targetX, double targetY) {
+    public void update(
+            Pose robotPose,
+            double targetX,
+            double targetY,
+            LimelightSubsystem limelight
+    ) {
 
         if(manualMode) return;
 
@@ -47,7 +53,21 @@ public class TurretSubsystem {
 
         double rawTarget = fieldTargetAngle - robotHeading;
 
-        turretTargetAngle = wrapToSafeRange(rawTarget);
+    /* ===================== APRILTAG CORRECTION ===================== */
+
+        if(limelight.hasTarget() && Math.abs(limelight.getTx()) < TeleOpConstants.Turret.MAX_TX_FOR_CORRECTION) {
+
+            double desiredCorrection = Math.toRadians(limelight.getTx());
+
+            visionCorrection = visionCorrection * (1.0 - TeleOpConstants.Turret.LL_FILTER)  + desiredCorrection * TeleOpConstants.Turret.LL_FILTER;
+        }
+        else {
+            // Slowly decay correction when tag disappears
+            visionCorrection *= 0.95;
+        }
+
+        turretTargetAngle = wrapToSafeRange( rawTarget + visionCorrection * TeleOpConstants.Turret.LL_CORRECTION_GAIN
+        );
 
         runPID();
     }

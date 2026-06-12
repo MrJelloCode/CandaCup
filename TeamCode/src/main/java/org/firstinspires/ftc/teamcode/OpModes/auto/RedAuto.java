@@ -14,6 +14,7 @@ import org.firstinspires.ftc.teamcode.constants.TeleOpConstants;
 import org.firstinspires.ftc.teamcode.pedroPathing.Constants;
 import org.firstinspires.ftc.teamcode.subsystem.FlyWheelSubsystem;
 import org.firstinspires.ftc.teamcode.subsystem.IntakeSubsystem;
+import org.firstinspires.ftc.teamcode.subsystem.LimelightSubsystem;
 import org.firstinspires.ftc.teamcode.subsystem.TurretSubsystem;
 
 import org.firstinspires.ftc.teamcode.subsystem.PathStorage;
@@ -47,8 +48,13 @@ public class RedAuto extends LinearOpMode {
     private FlyWheelSubsystem flyWheelSubsystem;
     private IntakeSubsystem intakeSubsystem;
     private TurretSubsystem turretSubsystem;
+    private LimelightSubsystem limelightSubsystem;
 
     public void runOpMode() {
+
+        limelightSubsystem = new LimelightSubsystem(hardwareMap);
+        limelightSubsystem.switchPipe(0);
+
         flyWheelSubsystem = new FlyWheelSubsystem(hardwareMap,gamepad2);
         intakeSubsystem  = new IntakeSubsystem(hardwareMap, gamepad2);
         turretSubsystem = new TurretSubsystem(hardwareMap);
@@ -77,7 +83,7 @@ public class RedAuto extends LinearOpMode {
             telemetry.addData("Pose state in Path Storage", PathStorage.getPose());
             intakeSubsystem.teleUpdate();
             flyWheelSubsystem.teleVelocity();
-            turretSubsystem.update(follower.getPose(), TeleOpConstants.Turret.RED_TARGET_X, TeleOpConstants.Turret.RED_TARGET_Y);
+            turretSubsystem.update(follower.getPose(), TeleOpConstants.Turret.RED_TARGET_X, TeleOpConstants.Turret.RED_TARGET_Y, limelightSubsystem);
 
             // Feedback to Driver Hub for debugging
             telemetry.addData("path state", pathState);

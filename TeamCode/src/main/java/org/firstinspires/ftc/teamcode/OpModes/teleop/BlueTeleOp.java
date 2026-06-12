@@ -43,6 +43,7 @@ private Follower follower;
          panelsTelemetry = PanelsTelemetry.INSTANCE.getTelemetry();
 
         limelightSubsystem = new LimelightSubsystem(hardwareMap);
+        limelightSubsystem.switchPipe(1);
         drivetrainSubsystem = new DrivetrainSubsystem(hardwareMap,gamepad1);
         flyWheelSubsystem = new FlyWheelSubsystem(hardwareMap,gamepad2);
         intakeSubsystem  = new IntakeSubsystem(hardwareMap, gamepad2);
@@ -116,7 +117,7 @@ private Follower follower;
 
         follower.update();
         // AUTO AIM
-        turretSubsystem.update(pose, TeleOpConstants.Turret.BLUE_TARGET_X, TeleOpConstants.Turret.BLUE_TARGET_Y); // ← your real target coords
+        turretSubsystem.update(pose, TeleOpConstants.Turret.BLUE_TARGET_X, TeleOpConstants.Turret.BLUE_TARGET_Y, limelightSubsystem); // ← your real target coords
 
 //        hoodSubsystem.update(pose, TeleOpConstants.Turret.BLUE_TARGET_X, TeleOpConstants.Turret.BLUE_TARGET_Y); // ← your real target coords
         // DRIVER OVERRIDE
