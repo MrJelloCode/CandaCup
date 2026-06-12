@@ -71,7 +71,7 @@ public class TeleOpConstants {
     /* ========== TURRET ========== */
     public static class Turret {
 
-        public static final double LL_CORRECTION_GAIN = 0.25;
+        public static  double LL_CORRECTION_GAIN = 0.25;
 
         public static double LL_FILTER = 0.10;
 

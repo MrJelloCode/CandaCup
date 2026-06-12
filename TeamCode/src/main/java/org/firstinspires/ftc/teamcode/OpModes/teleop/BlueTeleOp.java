@@ -43,7 +43,7 @@ private Follower follower;
          panelsTelemetry = PanelsTelemetry.INSTANCE.getTelemetry();
 
         limelightSubsystem = new LimelightSubsystem(hardwareMap);
-        limelightSubsystem.switchPipe(1);
+        limelightSubsystem.switchPipe(2);
         drivetrainSubsystem = new DrivetrainSubsystem(hardwareMap,gamepad1);
         flyWheelSubsystem = new FlyWheelSubsystem(hardwareMap,gamepad2);
         intakeSubsystem  = new IntakeSubsystem(hardwareMap, gamepad2);

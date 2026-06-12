@@ -53,7 +53,7 @@ public class RedAuto extends LinearOpMode {
     public void runOpMode() {
 
         limelightSubsystem = new LimelightSubsystem(hardwareMap);
-        limelightSubsystem.switchPipe(0);
+        limelightSubsystem.switchPipe(1);
 
         flyWheelSubsystem = new FlyWheelSubsystem(hardwareMap,gamepad2);
         intakeSubsystem  = new IntakeSubsystem(hardwareMap, gamepad2);

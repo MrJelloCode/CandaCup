@@ -51,7 +51,7 @@ public class BlueAuto extends LinearOpMode {
 
     public void runOpMode() {
         limelightSubsystem = new LimelightSubsystem(hardwareMap);
-        limelightSubsystem.switchPipe(0);
+        limelightSubsystem.switchPipe(2);
 
 
         flyWheelSubsystem = new FlyWheelSubsystem(hardwareMap,gamepad2);
