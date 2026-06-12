@@ -14,7 +14,6 @@ import org.firstinspires.ftc.teamcode.constants.TeleOpConstants;
 import org.firstinspires.ftc.teamcode.pedroPathing.Constants;
 import org.firstinspires.ftc.teamcode.subsystem.FlyWheelSubsystem;
 import org.firstinspires.ftc.teamcode.subsystem.IntakeSubsystem;
-import org.firstinspires.ftc.teamcode.subsystem.LimelightSubsystem;
 import org.firstinspires.ftc.teamcode.subsystem.PathStorage;
 import org.firstinspires.ftc.teamcode.subsystem.TurretSubsystem;
 
@@ -47,13 +46,8 @@ public class BlueAuto extends LinearOpMode {
     private FlyWheelSubsystem flyWheelSubsystem;
     private IntakeSubsystem intakeSubsystem;
     private TurretSubsystem turretSubsystem;
-    private LimelightSubsystem limelightSubsystem;
 
     public void runOpMode() {
-        limelightSubsystem = new LimelightSubsystem(hardwareMap);
-        limelightSubsystem.switchPipe(2);
-
-
         flyWheelSubsystem = new FlyWheelSubsystem(hardwareMap,gamepad2);
         intakeSubsystem  = new IntakeSubsystem(hardwareMap, gamepad2);
         turretSubsystem = new TurretSubsystem(hardwareMap);
@@ -84,7 +78,7 @@ public class BlueAuto extends LinearOpMode {
             autonomousPathUpdate();
             intakeSubsystem.teleUpdate();
             flyWheelSubsystem.teleVelocity();
-            turretSubsystem.update(follower.getPose(), TeleOpConstants.Turret.BLUE_TARGET_X, TeleOpConstants.Turret.BLUE_TARGET_Y, limelightSubsystem);
+            turretSubsystem.update(follower.getPose(), TeleOpConstants.Turret.BLUE_TARGET_X, TeleOpConstants.Turret.BLUE_TARGET_Y);
 
 
             // Feedback to Driver Hub for debugging
@@ -221,14 +215,14 @@ public class BlueAuto extends LinearOpMode {
             - Time: "if(pathTimer.getElapsedTimeSeconds() > 1) {}"
             - Robot Position: "if(follower.getPose().getX() > 36) {}"
             */
-            /* This case checks the robot's position and will wait until the robot position is close (1 inch away) from the scorePose's position */
-            if (!follower.isBusy()) {
-                /* Score Preload */
-                /* Since this is a pathChain, we can have Pedro hold the end point while we are grabbing the sample */
-                follower.followPath(Path9, true);
-                setPathState(9);
-            }
-            break;
+                /* This case checks the robot's position and will wait until the robot position is close (1 inch away) from the scorePose's position */
+                if (!follower.isBusy()) {
+                    /* Score Preload */
+                    /* Since this is a pathChain, we can have Pedro hold the end point while we are grabbing the sample */
+                    follower.followPath(Path9, true);
+                    setPathState(9);
+                }
+                break;
 
 
             case 9:
@@ -237,14 +231,14 @@ public class BlueAuto extends LinearOpMode {
             - Time: "if(pathTimer.getElapsedTimeSeconds() > 1) {}"
             - Robot Position: "if(follower.getPose().getX() > 36) {}"
             */
-            /* This case checks the robot's position and will wait until the robot position is close (1 inch away) from the scorePose's position */
-            if (!follower.isBusy()) {
-                /* Score Preload */
-                /* Since this is a pathChain, we can have Pedro hold the end point while we are grabbing the sample */
-                follower.followPath(Path10, true);
-                setPathState(10);
-            }
-            break;
+                /* This case checks the robot's position and will wait until the robot position is close (1 inch away) from the scorePose's position */
+                if (!follower.isBusy()) {
+                    /* Score Preload */
+                    /* Since this is a pathChain, we can have Pedro hold the end point while we are grabbing the sample */
+                    follower.followPath(Path10, true);
+                    setPathState(10);
+                }
+                break;
 
 
             case 10:
@@ -253,14 +247,14 @@ public class BlueAuto extends LinearOpMode {
             - Time: "if(pathTimer.getElapsedTimeSeconds() > 1) {}"
             - Robot Position: "if(follower.getPose().getX() > 36) {}"
             */
-            /* This case checks the robot's position and will wait until the robot position is close (1 inch away) from the scorePose's position */
-            if (!follower.isBusy()) {
-                /* Score Preload */
-                /* Since this is a pathChain, we can have Pedro hold the end point while we are grabbing the sample */
-                follower.followPath(Path11, true);
-                setPathState(11);
-            }
-            break;
+                /* This case checks the robot's position and will wait until the robot position is close (1 inch away) from the scorePose's position */
+                if (!follower.isBusy()) {
+                    /* Score Preload */
+                    /* Since this is a pathChain, we can have Pedro hold the end point while we are grabbing the sample */
+                    follower.followPath(Path11, true);
+                    setPathState(11);
+                }
+                break;
 
 
             case 11:
@@ -269,14 +263,14 @@ public class BlueAuto extends LinearOpMode {
             - Time: "if(pathTimer.getElapsedTimeSeconds() > 1) {}"
             - Robot Position: "if(follower.getPose().getX() > 36) {}"
             */
-            /* This case checks the robot's position and will wait until the robot position is close (1 inch away) from the scorePose's position */
-            if (!follower.isBusy()) {
-                /* Score Preload */
-                /* Since this is a pathChain, we can have Pedro hold the end point while we are grabbing the sample */
-                follower.followPath(Path12, true);
-                setPathState(12);
-            }
-            break;
+                /* This case checks the robot's position and will wait until the robot position is close (1 inch away) from the scorePose's position */
+                if (!follower.isBusy()) {
+                    /* Score Preload */
+                    /* Since this is a pathChain, we can have Pedro hold the end point while we are grabbing the sample */
+                    follower.followPath(Path12, true);
+                    setPathState(12);
+                }
+                break;
 
 
 

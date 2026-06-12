@@ -44,7 +44,6 @@ public class RedTeleOp extends OpMode {
         panelsTelemetry = PanelsTelemetry.INSTANCE.getTelemetry();
 
         limelightSubsystem = new LimelightSubsystem(hardwareMap);
-        limelightSubsystem.switchPipe(1);
         drivetrainSubsystem = new DrivetrainSubsystem(hardwareMap,gamepad1);
         flyWheelSubsystem = new FlyWheelSubsystem(hardwareMap,gamepad2);
         intakeSubsystem  = new IntakeSubsystem(hardwareMap, gamepad2);
@@ -99,7 +98,7 @@ public class RedTeleOp extends OpMode {
 
         follower.update();
         // AUTO AIM
-        turretSubsystem.update(pose, TeleOpConstants.Turret.RED_TARGET_X, TeleOpConstants.Turret.RED_TARGET_Y, limelightSubsystem);
+        turretSubsystem.update(pose, TeleOpConstants.Turret.RED_TARGET_X, TeleOpConstants.Turret.RED_TARGET_Y);
         hoodSubsystem.update(pose, TeleOpConstants.Turret.RED_TARGET_X, TeleOpConstants.Turret.RED_TARGET_Y);
 
         // DRIVER OVERRIDE

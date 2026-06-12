@@ -14,7 +14,6 @@ public class TurretSubsystem {
 
     private double turretAngle = 0;
     private double turretTargetAngle = 0;
-    private double visionCorrection = 0;
 
     private double integral = 0;
     private double lastError = 0;
@@ -31,12 +30,7 @@ public class TurretSubsystem {
 
     /* ========= AUTO AIM ========= */
 
-    public void update(
-            Pose robotPose,
-            double targetX,
-            double targetY,
-            LimelightSubsystem limelight
-    ) {
+    public void update(Pose robotPose, double targetX, double targetY) {
 
         if(manualMode) return;
 
@@ -53,21 +47,7 @@ public class TurretSubsystem {
 
         double rawTarget = fieldTargetAngle - robotHeading;
 
-    /* ===================== APRILTAG CORRECTION ===================== */
-
-        if(limelight.hasTarget() && Math.abs(limelight.getTx()) < TeleOpConstants.Turret.MAX_TX_FOR_CORRECTION) {
-
-            double desiredCorrection = Math.toRadians(limelight.getTx());
-
-            visionCorrection = visionCorrection * (1.0 - TeleOpConstants.Turret.LL_FILTER)  + desiredCorrection * TeleOpConstants.Turret.LL_FILTER;
-        }
-        else {
-            // Slowly decay correction when tag disappears
-            visionCorrection *= 0.95;
-        }
-
-        turretTargetAngle = wrapToSafeRange( rawTarget + visionCorrection * TeleOpConstants.Turret.LL_CORRECTION_GAIN
-        );
+        turretTargetAngle = wrapToSafeRange(rawTarget);
 
         runPID();
     }
@@ -113,24 +93,17 @@ public class TurretSubsystem {
 
     private double wrapToSafeRange(double angle) {
 
-        // Normalize to [-π, π]
-        while(angle > Math.PI)
+        while(angle > Math.PI) angle -= 2 * Math.PI;
+        while(angle < -Math.PI) angle += 2 * Math.PI;
+
+        if(angle > TeleOpConstants.Turret.MAX_ANGLE)
             angle -= 2 * Math.PI;
 
-        while(angle < -Math.PI)
+        if(angle < TeleOpConstants.Turret.MIN_ANGLE)
             angle += 2 * Math.PI;
-
-        // Hard turret limits
-        angle = Range.clip(
-                angle,
-                TeleOpConstants.Turret.MIN_ANGLE,
-                TeleOpConstants.Turret.MAX_ANGLE
-        );
 
         return angle;
     }
-
-
     public void firstInit(){
         turretMotor.setMode(DcMotorEx.RunMode.STOP_AND_RESET_ENCODER);
         turretMotor.setMode(DcMotorEx.RunMode.RUN_WITHOUT_ENCODER);
@@ -152,8 +125,8 @@ public class TurretSubsystem {
         double derivative = error - lastError;
 
         double output = TeleOpConstants.Turret.KP * error +
-                        TeleOpConstants.Turret.KI * integral +
-                        TeleOpConstants.Turret.KD * derivative;
+                TeleOpConstants.Turret.KI * integral +
+                TeleOpConstants.Turret.KD * derivative;
 
         output = Range.clip(
                 output,

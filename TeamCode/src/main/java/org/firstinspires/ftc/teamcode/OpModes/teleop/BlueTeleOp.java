@@ -117,7 +117,7 @@ private Follower follower;
 
         follower.update();
         // AUTO AIM
-        turretSubsystem.update(pose, TeleOpConstants.Turret.BLUE_TARGET_X, TeleOpConstants.Turret.BLUE_TARGET_Y, limelightSubsystem); // ← your real target coords
+        turretSubsystem.update(pose, TeleOpConstants.Turret.BLUE_TARGET_X, TeleOpConstants.Turret.BLUE_TARGET_Y); // ← your real target coords
 
 //        hoodSubsystem.update(pose, TeleOpConstants.Turret.BLUE_TARGET_X, TeleOpConstants.Turret.BLUE_TARGET_Y); // ← your real target coords
         // DRIVER OVERRIDE
