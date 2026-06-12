@@ -20,7 +20,7 @@ import org.firstinspires.ftc.teamcode.subsystem.PathStorage;
 import org.firstinspires.ftc.teamcode.subsystem.TurretSubsystem;
 
 @Configurable
-@TeleOp(name="BlueTeleop")
+@TeleOp(name="BlueTeleOp")
 public class BlueTeleOp extends OpMode {
 
     private LimelightSubsystem limelightSubsystem;
@@ -31,19 +31,19 @@ public class BlueTeleOp extends OpMode {
     private static TelemetryManager panelsTelemetry;
     private HoodSubsystem hoodSubsystem;
 
-
 //    private RevBlinkinLedDriver blinkin;
 
-private Follower follower;
+    private Follower follower;
     @Override
     public void init() {
         follower = Constants.createFollower(hardwareMap);
-//        follower.setStartingPose(new Pose(TeleOpConstants.Turret.BLUE_START_X,TeleOpConstants.Turret.BLUE_START_Y, TeleOpConstants.Turret.BLUE_START_HEADING) == null ? new Pose() : new Pose(TeleOpConstants.Turret.BLUE_START_X,TeleOpConstants.Turret.BLUE_START_Y, TeleOpConstants.Turret.BLUE_START_HEADING));
-//        follower.update();
-         panelsTelemetry = PanelsTelemetry.INSTANCE.getTelemetry();
+//        follower.setStartingPose(new Pose(TeleOpConstants.Turret.RED_START_X,TeleOpConstants.Turret.RED_START_Y, TeleOpConstants.Turret.RED_START_HEADING) == null ? new Pose() : new Pose(TeleOpConstants.Turret.RED_START_X,TeleOpConstants.Turret.RED_START_Y, TeleOpConstants.Turret.RED_START_HEADING));
+
+        follower.update();
+
+        panelsTelemetry = PanelsTelemetry.INSTANCE.getTelemetry();
 
         limelightSubsystem = new LimelightSubsystem(hardwareMap);
-        limelightSubsystem.switchPipe(2);
         drivetrainSubsystem = new DrivetrainSubsystem(hardwareMap,gamepad1);
         flyWheelSubsystem = new FlyWheelSubsystem(hardwareMap,gamepad2);
         intakeSubsystem  = new IntakeSubsystem(hardwareMap, gamepad2);
@@ -51,56 +51,37 @@ private Follower follower;
         hoodSubsystem = new HoodSubsystem(hardwareMap);
 //        blinkin = hardwareMap.get(RevBlinkinLedDriver.class, "blinkin");
 
+        follower = Constants.createFollower(hardwareMap);
+
+//        follower.setStartingPose(new Pose(
+//                TeleOpConstants.Turret.RED_START_X,
+//                TeleOpConstants.Turret.RED_START_Y,
+//                Math.toRadians(TeleOpConstants.Turret.RED_START_HEADING)
+//
+//
+//        ));
 
 
-        telemetry.addData("x", follower.getPose().getX());
-        telemetry.addData("y", follower.getPose().getY());
-        telemetry.addData("heading", follower.getPose().getHeading());
-        telemetry.update();
-
-
-
-        follower.setPose(PathStorage.getPose()); // Restore auto pose ONCE
-        telemetry.addData("x", follower.getPose().getX());
-        telemetry.addData("y", follower.getPose().getY());
-        telemetry.addData("heading", follower.getPose().getHeading());
-        telemetry.update();
-
-
-
-
+        follower.setStartingPose(PathStorage.getPose()); // Restore auto pose ONCE
         follower.update();
-
-
-        telemetry.addData("x", follower.getPose().getX());
-        telemetry.addData("y", follower.getPose().getY());
-        telemetry.addData("heading", follower.getPose().getHeading());
-        telemetry.update();
-
-
-
         telemetry.addData("PATH CURRENT", PathStorage.getPose());
         telemetry.update();
-
-
-//        follower.setPose(PathStorage.getPose()); // Restore auto pose ONCE
 //        follower.update();
-
     }
 
     @Override
     public void loop() {
 
-
         limelightSubsystem.update();
-
         drivetrainSubsystem.robotCentricDrive();
-
         intakeSubsystem.teleUpdate();
-
         flyWheelSubsystem.teleVelocity();
-
         flyWheelSubsystem.graphTelemetry(panelsTelemetry);
+
+
+
+
+
 
 //        if(flyWheelSubsystem.atTargetVelocity()){
 //            blinkin.setPattern(RevBlinkinLedDriver.BlinkinPattern.GREEN);
@@ -108,18 +89,17 @@ private Follower follower;
 //            blinkin.setPattern(RevBlinkinLedDriver.BlinkinPattern.VIOLET);
 //        }
 
+
         Pose pose = follower.getPose();
 
-//        // RESET POSE IN CORNER
-//        if(gamepad1.start){
-//            follower.setPose(new Pose(10,10,Math.toRadians(90)));
-//        }
+        if(gamepad1.start){
+            follower.setPose(new Pose(10,10,Math.toRadians(90)));
+        }
 
-        follower.update();
         // AUTO AIM
-        turretSubsystem.update(pose, TeleOpConstants.Turret.BLUE_TARGET_X, TeleOpConstants.Turret.BLUE_TARGET_Y); // ← your real target coords
+        turretSubsystem.update(pose, TeleOpConstants.Turret.BLUE_TARGET_X, TeleOpConstants.Turret.BLUE_TARGET_Y);
+        hoodSubsystem.update(pose, TeleOpConstants.Turret.BLUE_TARGET_Y, TeleOpConstants.Turret.BLUE_TARGET_Y);
 
-//        hoodSubsystem.update(pose, TeleOpConstants.Turret.BLUE_TARGET_X, TeleOpConstants.Turret.BLUE_TARGET_Y); // ← your real target coords
         // DRIVER OVERRIDE
         if(Math.abs(gamepad2.right_stick_x) > 0.1){
             turretSubsystem.manualControl(gamepad2.right_stick_x);
@@ -137,21 +117,20 @@ private Follower follower;
         }
 
 
+        follower.update();
+
+
+
         //telemtry
-//        turretSubsystem.telemetry(telemetry);
-//        hoodSubsystem.telemetry(telemetry);
-
-
-        telemetry.addData("PATH CURRENT", PathStorage.getPose());
-        telemetry.update();
-
-
+        turretSubsystem.telemetry(telemetry);
+        hoodSubsystem.telemetry(telemetry);
         telemetry.addData("x", follower.getPose().getX());
         telemetry.addData("y", follower.getPose().getY());
         telemetry.addData("heading", follower.getPose().getHeading());
         telemetry.update();
         telemetry.update();
 
-    }
 
+
+    }
 }

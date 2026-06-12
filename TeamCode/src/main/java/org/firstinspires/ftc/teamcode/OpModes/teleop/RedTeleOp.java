@@ -93,7 +93,7 @@ public class RedTeleOp extends OpMode {
         Pose pose = follower.getPose();
 
         if(gamepad1.start){
-            follower.setPose(new Pose(10,10,90));
+            follower.setPose(new Pose(10,10,Math.toRadians(90)));
         }
 
         // AUTO AIM
