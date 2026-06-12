@@ -113,17 +113,24 @@ public class TurretSubsystem {
 
     private double wrapToSafeRange(double angle) {
 
-        while(angle > Math.PI) angle -= 2 * Math.PI;
-        while(angle < -Math.PI) angle += 2 * Math.PI;
-
-        if(angle > TeleOpConstants.Turret.MAX_ANGLE)
+        // Normalize to [-π, π]
+        while(angle > Math.PI)
             angle -= 2 * Math.PI;
 
-        if(angle < TeleOpConstants.Turret.MIN_ANGLE)
+        while(angle < -Math.PI)
             angle += 2 * Math.PI;
+
+        // Hard turret limits
+        angle = Range.clip(
+                angle,
+                TeleOpConstants.Turret.MIN_ANGLE,
+                TeleOpConstants.Turret.MAX_ANGLE
+        );
 
         return angle;
     }
+
+
     public void firstInit(){
         turretMotor.setMode(DcMotorEx.RunMode.STOP_AND_RESET_ENCODER);
         turretMotor.setMode(DcMotorEx.RunMode.RUN_WITHOUT_ENCODER);
