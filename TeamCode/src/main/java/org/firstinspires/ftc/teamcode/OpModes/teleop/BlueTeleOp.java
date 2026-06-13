@@ -30,7 +30,8 @@ public class BlueTeleOp extends OpMode {
     private TurretSubsystem turretSubsystem;
     private static TelemetryManager panelsTelemetry;
     private HoodSubsystem hoodSubsystem;
-
+    private boolean autoAimEnabled = true;
+    private boolean lastY = false;
 //    private RevBlinkinLedDriver blinkin;
 
     private Follower follower;
@@ -96,18 +97,40 @@ public class BlueTeleOp extends OpMode {
             follower.setPose(new Pose(10,10,Math.toRadians(90)));
         }
 
-        // AUTO AIM
-        turretSubsystem.update(pose, TeleOpConstants.Turret.BLUE_TARGET_X, TeleOpConstants.Turret.BLUE_TARGET_Y);
+
         hoodSubsystem.update(pose, TeleOpConstants.Turret.BLUE_TARGET_Y, TeleOpConstants.Turret.BLUE_TARGET_Y);
 
-        // DRIVER OVERRIDE
-        if(Math.abs(gamepad2.right_stick_x) > 0.1){
-            turretSubsystem.manualControl(gamepad2.right_stick_x);
-        }
-        else{
-            turretSubsystem.disableManual();
+        /* ================= AUTO AIM TOGGLE ================= */
+
+        if(gamepad2.y && !lastY){
+            autoAimEnabled = !autoAimEnabled;
         }
 
+        lastY = gamepad2.y;
+
+        /* ================= TURRET CONTROL ================= */
+
+        if(autoAimEnabled){
+
+            turretSubsystem.disableManual();
+
+            turretSubsystem.update(
+                    pose,
+                    TeleOpConstants.Turret.BLUE_TARGET_X,
+                    TeleOpConstants.Turret.BLUE_TARGET_Y
+            );
+        }
+        else{
+
+            if(Math.abs(gamepad2.right_stick_x) > 0.1){
+                turretSubsystem.manualControl(
+                        gamepad2.right_stick_x
+                );
+            }
+            else{
+                turretSubsystem.manualControl(0);
+            }
+        }
 //        if(gamepad2.dpad_up){
 //            hoodSubsystem.adjust(0.02);
 //        }
@@ -126,6 +149,7 @@ public class BlueTeleOp extends OpMode {
         //telemtry
         turretSubsystem.telemetry(telemetry);
         hoodSubsystem.telemetry(telemetry);
+        telemetry.addData("Turret Auto Aim", autoAimEnabled ? "ON" : "OFF");
         telemetry.addData("x", follower.getPose().getX());
         telemetry.addData("y", follower.getPose().getY());
         telemetry.addData("heading", follower.getPose().getHeading());
