@@ -39,10 +39,10 @@ public class TeleOpConstants {
         public static String INTAKE_MOTOR_NAME = "intake";
         public static String GATE_SERVO_NAME = "gate";
 
-        public static double POWER = 0.8;
+        public static double POWER = 1;
 
         public static double GATE_OPEN = 0.05;
-        public static double GATE_CLOSE = 0.25;
+        public static double GATE_CLOSE = 0.19;
 
     }
 
@@ -95,7 +95,7 @@ public class TeleOpConstants {
         public static final double GEAR_RATIO = 3.0;
 
         public static final double MAX_ANGLE = Math.toRadians(180);
-        public static final double MIN_ANGLE = Math.toRadians(-100);
+        public static final double MIN_ANGLE = Math.toRadians(-80);
 
 
         public static final double TURRET_OFFSET = 0;
