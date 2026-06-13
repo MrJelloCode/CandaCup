@@ -108,13 +108,13 @@ public class RedTeleOp extends OpMode {
             turretSubsystem.disableManual();
         }
 
-        if(gamepad2.dpad_up){
-            hoodSubsystem.adjust(0.02);
-        }
-
-        if(gamepad2.dpad_down){
-            hoodSubsystem.adjust(-0.02);
-        }
+//        if(gamepad2.dpad_up){
+//            hoodSubsystem.adjust(0.02);
+//        }
+//
+//        if(gamepad2.dpad_down){
+//            hoodSubsystem.adjust(-0.02);
+//        }
 
 
         follower.update();

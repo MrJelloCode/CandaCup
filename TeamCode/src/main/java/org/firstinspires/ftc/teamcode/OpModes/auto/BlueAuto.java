@@ -13,6 +13,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import org.firstinspires.ftc.teamcode.constants.TeleOpConstants;
 import org.firstinspires.ftc.teamcode.pedroPathing.Constants;
 import org.firstinspires.ftc.teamcode.subsystem.FlyWheelSubsystem;
+import org.firstinspires.ftc.teamcode.subsystem.HoodSubsystem;
 import org.firstinspires.ftc.teamcode.subsystem.IntakeSubsystem;
 import org.firstinspires.ftc.teamcode.subsystem.PathStorage;
 import org.firstinspires.ftc.teamcode.subsystem.TurretSubsystem;
@@ -47,10 +48,14 @@ public class BlueAuto extends LinearOpMode {
     private IntakeSubsystem intakeSubsystem;
     private TurretSubsystem turretSubsystem;
 
+    private HoodSubsystem hoodSubsystem;
+
     public void runOpMode() {
         flyWheelSubsystem = new FlyWheelSubsystem(hardwareMap,gamepad2);
         intakeSubsystem  = new IntakeSubsystem(hardwareMap, gamepad2);
         turretSubsystem = new TurretSubsystem(hardwareMap);
+        hoodSubsystem = new HoodSubsystem(hardwareMap);
+
         pathTimer = new Timer();
         opmodeTimer = new Timer();
         opmodeTimer.resetTimer();
@@ -66,17 +71,25 @@ public class BlueAuto extends LinearOpMode {
         waitForStart();
         //on start
         opmodeTimer.resetTimer();
-        setPathState(0);
+
 
 
         while (opModeIsActive()) {
             follower.update();
+            Pose pose = follower.getPose();
+
             PathStorage.setPose(follower.getPose());
             telemetry.addData("Pose state in Path Storage", PathStorage.getPose());
 
             autonomousPathUpdate();
             intakeSubsystem.teleUpdate();
             flyWheelSubsystem.teleVelocity();
+
+
+
+            hoodSubsystem.update(pose, TeleOpConstants.Turret.BLUE_TARGET_Y, TeleOpConstants.Turret.BLUE_TARGET_Y);
+
+
             turretSubsystem.update(follower.getPose(), TeleOpConstants.Turret.BLUE_TARGET_X, TeleOpConstants.Turret.BLUE_TARGET_Y);
 
 
