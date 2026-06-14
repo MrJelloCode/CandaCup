@@ -15,18 +15,20 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 public class Constants {
     public static FollowerConstants followerConstants = new FollowerConstants()
         .mass(12.791)
-            .headingPIDFCoefficients(new PIDFCoefficients(1.5, 0, 0.1, 0))
-            .predictiveBrakingCoefficients(new PredictiveBrakingCoefficients(0.1, 0.08355854415120575, 0.002296192554373277))
-            .centripetalScaling(0)
+  .headingPIDFCoefficients(new PIDFCoefficients(1.5, 0, 0.1, 0))
+           .predictiveBrakingCoefficients(new PredictiveBrakingCoefficients(0.1, 0.06722866772459533
+
+                   , 0.0025071988797622014))
+//            .centripetalScaling(0)
 
             ;
 
 
-    public static PathConstraints pathConstraints = new PathConstraints(0.98, 100, 1, 1);
+    public static PathConstraints pathConstraints = new PathConstraints(0.95, 100, 1, 1);
     public static MecanumConstants driveConstants = new MecanumConstants()
             .maxPower(1)
-            .xVelocity(41.91666835341768)
-            .yVelocity(32.64849502576003)
+           .xVelocity(159.00131561278187)
+            .yVelocity(85.77954954567335)
 
             .rightFrontMotorName("frontRight")
             .rightRearMotorName("backRight")
@@ -38,9 +40,9 @@ public class Constants {
             .rightRearMotorDirection(DcMotorSimple.Direction.FORWARD);
 
     public static ThreeWheelConstants localizerConstants = new ThreeWheelConstants()
-          .forwardTicksToInches(4.06139873024567E-4)
-          .strafeTicksToInches(4.041202308330165E-4)
-            .turnTicksToInches(5.667236935152596E-4)
+          .forwardTicksToInches(4.11177079048003E-4)
+          .strafeTicksToInches(4.143462866743475E-4)
+            .turnTicksToInches( 5.80794655059454E-4)
 
 //            .forwardTicksToInches(0)
 //            .strafeTicksToInches(0)
