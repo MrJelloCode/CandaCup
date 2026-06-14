@@ -21,7 +21,7 @@ import org.firstinspires.ftc.teamcode.subsystem.TurretSubsystem;
 
 @Autonomous(name = "BlueAuto")
 public class BlueAuto extends LinearOpMode {
-    private final Pose startPose = new Pose(20.454, 122.109, Math.toRadians(143));// Start Pose of our robot. This is against the goal facing AWAY
+    private final Pose startPose = new Pose(20.454, 122.109, Math.toRadians(145));// Start Pose of our robot. This is against the goal facing AWAY
     private final Pose scorePose = new Pose(54.112, 84.087); // Scoring Pose of our robot.
     private final Pose drinkFromFountain = new Pose(11.803, 61.585, Math.toRadians(146)); // Highest (First Set) of Artifacts from the Spike Mark.
     private final Pose pickup2Pose = new Pose(12, 60, Math.toRadians(180)); // Middle (Second Set) of Artifacts from the Spike Mark.
@@ -319,7 +319,7 @@ public class BlueAuto extends LinearOpMode {
                                 new Pose(53.924, 84.219)
                         )
                 )
-                .setConstantHeadingInterpolation(Math.toRadians(143))
+                .setConstantHeadingInterpolation(Math.toRadians(145))
                 .build();
 
         Path2 = follower.pathBuilder()

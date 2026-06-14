@@ -18,7 +18,7 @@ public class PathStorage {
         return new Pose(
                 storedPose.getX(),
                 storedPose.getY(),
-                storedPose.getHeading()
+                storedPose.getHeading()-Math.toRadians(-4)
         );
     }
 

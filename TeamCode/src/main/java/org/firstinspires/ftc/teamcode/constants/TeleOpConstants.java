@@ -28,7 +28,7 @@ public class TeleOpConstants {
         public static double KV = 0.000341;
         public static double KS = 0.13;
 
-        public static double FAR_VEL = 1800;
+        public static double FAR_VEL = 2000;
         public static double CLOSE_VEL = 1500;
         public static double VELOCITY_TOLERANCE = 50;
     }
