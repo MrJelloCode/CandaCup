@@ -77,7 +77,6 @@ public class RedAuto extends LinearOpMode {
 
         while (opModeIsActive()) {
             follower.update();
-            Pose pose = follower.getPose();
 
             autonomousPathUpdate();
             PathStorage.setPose(follower.getPose());
@@ -86,7 +85,7 @@ public class RedAuto extends LinearOpMode {
             flyWheelSubsystem.teleVelocity();
 
             turretSubsystem.update(follower.getPose(), TeleOpConstants.Turret.RED_TARGET_X, TeleOpConstants.Turret.RED_TARGET_Y);
-            hoodSubsystem.update(pose, TeleOpConstants.Turret.BLUE_TARGET_Y, TeleOpConstants.Turret.BLUE_TARGET_Y);
+            hoodSubsystem.update(follower.getPose(), TeleOpConstants.Turret.RED_TARGET_X, TeleOpConstants.Turret.RED_TARGET_Y);
 
             // Feedback to Driver Hub for debugging
             telemetry.addData("path state", pathState);
@@ -214,76 +213,76 @@ public class RedAuto extends LinearOpMode {
                 break;
 
 
-            case 8:
-            /* You could check for
-            - Follower State: "if(!follower.isBusy()) {}"
-            - Time: "if(pathTimer.getElapsedTimeSeconds() > 1) {}"
-            - Robot Position: "if(follower.getPose().getX() > 36) {}"
-            */
-                /* This case checks the robot's position and will wait until the robot position is close (1 inch away) from the scorePose's position */
-                if (!follower.isBusy()) {
-                    /* Score Preload */
-                    /* Since this is a pathChain, we can have Pedro hold the end point while we are grabbing the sample */
-                    follower.followPath(Path9, true);
-                    setPathState(9);
-                }
-                break;
+//            case 8:
+//            /* You could check for
+//            - Follower State: "if(!follower.isBusy()) {}"
+//            - Time: "if(pathTimer.getElapsedTimeSeconds() > 1) {}"
+//            - Robot Position: "if(follower.getPose().getX() > 36) {}"
+//            */
+//                /* This case checks the robot's position and will wait until the robot position is close (1 inch away) from the scorePose's position */
+//                if (!follower.isBusy()) {
+//                    /* Score Preload */
+//                    /* Since this is a pathChain, we can have Pedro hold the end point while we are grabbing the sample */
+//                    follower.followPath(Path9, true);
+//                    setPathState(9);
+//                }
+//                break;
+//
+//
+//            case 9:
+//            /* You could check for
+//            - Follower State: "if(!follower.isBusy()) {}"
+//            - Time: "if(pathTimer.getElapsedTimeSeconds() > 1) {}"
+//            - Robot Position: "if(follower.getPose().getX() > 36) {}"
+//            */
+//                /* This case checks the robot's position and will wait until the robot position is close (1 inch away) from the scorePose's position */
+//                if (!follower.isBusy()) {
+//                    /* Score Preload */
+//                    /* Since this is a pathChain, we can have Pedro hold the end point while we are grabbing the sample */
+//                    follower.followPath(Path10, true);
+//                    setPathState(10);
+//                }
+//                break;
+//
+//
+//            case 10:
+//            /* You could check for
+//            - Follower State: "if(!follower.isBusy()) {}"
+//            - Time: "if(pathTimer.getElapsedTimeSeconds() > 1) {}"
+//            - Robot Position: "if(follower.getPose().getX() > 36) {}"
+//            */
+//                /* This case checks the robot's position and will wait until the robot position is close (1 inch away) from the scorePose's position */
+//                if (!follower.isBusy()) {
+//                    /* Score Preload */
+//                    /* Since this is a pathChain, we can have Pedro hold the end point while we are grabbing the sample */
+//                    follower.followPath(Path11, true);
+//                    setPathState(11);
+//                }
+//                break;
+//
+//
+//            case 11:
+//            /* You could check for
+//            - Follower State: "if(!follower.isBusy()) {}"
+//            - Time: "if(pathTimer.getElapsedTimeSeconds() > 1) {}"
+//            - Robot Position: "if(follower.getPose().getX() > 36) {}"
+//            */
+//                /* This case checks the robot's position and will wait until the robot position is close (1 inch away) from the scorePose's position */
+//                if (!follower.isBusy()) {
+//                    /* Score Preload */
+//                    /* Since this is a pathChain, we can have Pedro hold the end point while we are grabbing the sample */
+//                    follower.followPath(Path12, true);
+//                    setPathState(12);
+//                }
+//                break;
+
+
 
 
             case 9:
-            /* You could check for
-            - Follower State: "if(!follower.isBusy()) {}"
-            - Time: "if(pathTimer.getElapsedTimeSeconds() > 1) {}"
-            - Robot Position: "if(follower.getPose().getX() > 36) {}"
-            */
                 /* This case checks the robot's position and will wait until the robot position is close (1 inch away) from the scorePose's position */
                 if (!follower.isBusy()) {
-                    /* Score Preload */
-                    /* Since this is a pathChain, we can have Pedro hold the end point while we are grabbing the sample */
-                    follower.followPath(Path10, true);
-                    setPathState(10);
-                }
-                break;
-
-
-            case 10:
-            /* You could check for
-            - Follower State: "if(!follower.isBusy()) {}"
-            - Time: "if(pathTimer.getElapsedTimeSeconds() > 1) {}"
-            - Robot Position: "if(follower.getPose().getX() > 36) {}"
-            */
-                /* This case checks the robot's position and will wait until the robot position is close (1 inch away) from the scorePose's position */
-                if (!follower.isBusy()) {
-                    /* Score Preload */
-                    /* Since this is a pathChain, we can have Pedro hold the end point while we are grabbing the sample */
-                    follower.followPath(Path11, true);
-                    setPathState(11);
-                }
-                break;
-
-
-            case 11:
-            /* You could check for
-            - Follower State: "if(!follower.isBusy()) {}"
-            - Time: "if(pathTimer.getElapsedTimeSeconds() > 1) {}"
-            - Robot Position: "if(follower.getPose().getX() > 36) {}"
-            */
-                /* This case checks the robot's position and will wait until the robot position is close (1 inch away) from the scorePose's position */
-                if (!follower.isBusy()) {
-                    /* Score Preload */
-                    /* Since this is a pathChain, we can have Pedro hold the end point while we are grabbing the sample */
-                    follower.followPath(Path12, true);
-                    setPathState(12);
-                }
-                break;
-
-
-
-
-            case 12:
-                /* This case checks the robot's position and will wait until the robot position is close (1 inch away) from the scorePose's position */
-                if (!follower.isBusy()) {
-                    /* Set the state to a Case we won't use or define, so it just stops running an new paths */
+                    /* Set the state to a Case we won't use or define, so it just stops running and new paths */
                     setPathState(-1);
                 }
                 break;
@@ -310,20 +309,18 @@ public class RedAuto extends LinearOpMode {
         Path1 = follower.pathBuilder()
                 .addPath(
                         new BezierLine(
-                                new Pose(123.546, 122.109),
-                                new Pose(90.076, 84.219)
+                                new Pose(122.648, 123.119),
+                                new Pose(86.295, 83.461)
                         )
                 )
-                .setConstantHeadingInterpolation(Math.toRadians(37))
+                .setLinearHeadingInterpolation(Math.toRadians(37), Math.toRadians(0))
                 .build();
 
         Path2 = follower.pathBuilder()
                 .addPath(
-                        new BezierCurve(
-                                new Pose(90.076, 84.219),
-                                new Pose(99.725, 56.333),
-                                new Pose(111.813, 60.079),
-                                new Pose(135.114, 59.377)
+                        new BezierLine(
+                                new Pose(86.295, 83.461),
+                                new Pose(128.818, 83.442)
                         )
                 )
                 .setTangentHeadingInterpolation()
@@ -332,8 +329,8 @@ public class RedAuto extends LinearOpMode {
         Path3 = follower.pathBuilder()
                 .addPath(
                         new BezierLine(
-                                new Pose(135.114, 59.377),
-                                new Pose(89.714, 84.247)
+                                new Pose(128.818, 83.442),
+                                new Pose(86.422, 83.435)
                         )
                 )
                 .setTangentHeadingInterpolation()
@@ -343,19 +340,20 @@ public class RedAuto extends LinearOpMode {
         Path4 = follower.pathBuilder()
                 .addPath(
                         new BezierCurve(
-                                new Pose(89.714, 84.247),
-                                new Pose(117.525, 51.840),
-                                new Pose(132.227, 61.604)
+                                new Pose(86.422, 83.435),
+                                new Pose(89.774, 61.013),
+                                new Pose(105.599, 58.530),
+                                new Pose(135.942, 58.748)
                         )
                 )
                 .setTangentHeadingInterpolation()
                 .build();
 
-        Path8 = follower.pathBuilder()
+        Path5 = follower.pathBuilder()
                 .addPath(
                         new BezierLine(
-                                new Pose(132.227, 61.604),
-                                new Pose(89.888, 84.087)
+                                new Pose(135.942, 58.748),
+                                new Pose(86.597, 83.447)
                         )
                 )
                 .setTangentHeadingInterpolation()
@@ -365,9 +363,10 @@ public class RedAuto extends LinearOpMode {
         Path6 = follower.pathBuilder()
                 .addPath(
                         new BezierCurve(
-                                new Pose(89.888, 84.087),
-                                new Pose(117.112, 51.781),
-                                new Pose(132.288, 61.581)
+                                new Pose(86.597, 83.447),
+                                new Pose(97.125, 35.672),
+                                new Pose(87.189, 35.258),
+                                new Pose(135.464, 35.742)
                         )
                 )
                 .setTangentHeadingInterpolation()
@@ -376,8 +375,8 @@ public class RedAuto extends LinearOpMode {
         Path7 = follower.pathBuilder()
                 .addPath(
                         new BezierLine(
-                                new Pose(132.288, 61.581),
-                                new Pose(89.909, 84.135)
+                                new Pose(135.464, 35.742),
+                                new Pose(86.666, 83.540)
                         )
                 )
                 .setTangentHeadingInterpolation()
@@ -387,53 +386,11 @@ public class RedAuto extends LinearOpMode {
         Path8 = follower.pathBuilder()
                 .addPath(
                         new BezierLine(
-                                new Pose(89.909, 84.135),
-                                new Pose(129.619, 83.797)
+                                new Pose(86.666, 83.540),
+                                new Pose(108.342, 58.053)
                         )
                 )
                 .setTangentHeadingInterpolation()
-                .build();
-
-        Path9 = follower.pathBuilder()
-                .addPath(
-                        new BezierLine(
-                                new Pose(129.619, 83.797),
-                                new Pose(89.829, 84.175)
-                        )
-                )
-                .setTangentHeadingInterpolation()
-                .setReversed()
-                .build();
-
-        Path10 = follower.pathBuilder()
-                .addPath(
-                        new BezierLine(
-                                new Pose(89.829, 84.175),
-                                new Pose(102.181, 35.613)
-                        )
-                )
-                .setTangentHeadingInterpolation()
-                .build();
-
-        Path11 = follower.pathBuilder()
-                .addPath(
-                        new BezierLine(
-                                new Pose(102.181, 35.613),
-                                new Pose(134.606, 35.286)
-                        )
-                )
-                .setTangentHeadingInterpolation()
-                .build();
-
-        Path12 = follower.pathBuilder()
-                .addPath(
-                        new BezierLine(
-                                new Pose(134.606, 35.286),
-                                new Pose(89.853, 84.181)
-                        )
-                )
-                .setTangentHeadingInterpolation()
-                .setReversed()
                 .build();
     }
 

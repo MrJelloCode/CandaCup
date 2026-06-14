@@ -95,7 +95,7 @@ public class TeleOpConstants {
         public static final double GEAR_RATIO = 3.0;
 
         public static final double MAX_ANGLE = Math.toRadians(180);
-        public static final double MIN_ANGLE = Math.toRadians(-80);
+        public static final double MIN_ANGLE = Math.toRadians(-180);
 
 
         public static final double TURRET_OFFSET = 0;
