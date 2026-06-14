@@ -117,8 +117,8 @@ public class RedTeleOp extends OpMode {
 
             turretSubsystem.update(
                     pose,
-                    TeleOpConstants.Turret.BLUE_TARGET_X,
-                    TeleOpConstants.Turret.BLUE_TARGET_Y
+                    TeleOpConstants.Turret.RED_TARGET_X,
+                    TeleOpConstants.Turret.RED_TARGET_Y
             );
         }
         else{

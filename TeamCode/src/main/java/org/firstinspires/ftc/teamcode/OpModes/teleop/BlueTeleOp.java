@@ -98,7 +98,7 @@ public class BlueTeleOp extends OpMode {
         }
 
 
-        hoodSubsystem.update(pose, TeleOpConstants.Turret.BLUE_TARGET_Y, TeleOpConstants.Turret.BLUE_TARGET_Y);
+        hoodSubsystem.update(pose, TeleOpConstants.Turret.BLUE_TARGET_X, TeleOpConstants.Turret.BLUE_TARGET_Y);
 
         /* ================= AUTO AIM TOGGLE ================= */
 

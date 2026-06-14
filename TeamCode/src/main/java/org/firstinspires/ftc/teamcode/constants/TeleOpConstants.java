@@ -30,7 +30,7 @@ public class TeleOpConstants {
 
         public static double FAR_VEL = 1800;
         public static double CLOSE_VEL = 1500;
-        public static double VELOCITY_TOLERANCE = 10;
+        public static double VELOCITY_TOLERANCE = 50;
     }
 
     @Configurable
@@ -60,7 +60,7 @@ public class TeleOpConstants {
         };
 
         public static final double HOOD_MAX = 0;
-        public static final double HOOD_MIN= 0;
+        public static final double HOOD_MIN = 0;
 
 
 
