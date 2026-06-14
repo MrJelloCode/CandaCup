@@ -23,6 +23,17 @@ public class IntakeSubsystem {
 
         this.gamepad = gamepad;
     }
+    public void openGate(){
+        gate.setPosition(TeleOpConstants.Intake.GATE_OPEN);
+    }
+
+    public void closeGate(){
+        gate.setPosition(TeleOpConstants.Intake.GATE_CLOSE);
+    }
+
+    public void stop(){
+        intake.setPower(0);
+    }
 
 
     public void teleUpdate() {

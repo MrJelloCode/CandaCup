@@ -22,6 +22,8 @@ import org.firstinspires.ftc.teamcode.subsystem.PathStorage;
 
 @Autonomous(name = "RedAuto")
 public class RedAuto extends LinearOpMode {
+    private boolean shooting = false;
+    private boolean feeding = false;
     private final Pose startPose = new Pose(123.546, 122.109, Math.toRadians(37));// Start Pose of our robot. This is against the goal facing AWAY
     private final Pose scorePose = new Pose(54.112, 84.087); // Scoring Pose of our robot.
     private final Pose drinkFromFountain = new Pose(11.803, 61.585, Math.toRadians(146)); // Highest (First Set) of Artifacts from the Spike Mark.
@@ -82,7 +84,7 @@ public class RedAuto extends LinearOpMode {
             PathStorage.setPose(follower.getPose());
             telemetry.addData("Pose state in Path Storage", PathStorage.getPose());
             intakeSubsystem.teleUpdate();
-            flyWheelSubsystem.teleVelocity();
+            flyWheelSubsystem.update();
 
             turretSubsystem.update(follower.getPose(), TeleOpConstants.Turret.RED_TARGET_X, TeleOpConstants.Turret.RED_TARGET_Y);
             hoodSubsystem.update(follower.getPose(), TeleOpConstants.Turret.RED_TARGET_X, TeleOpConstants.Turret.RED_TARGET_Y);
@@ -100,116 +102,148 @@ public class RedAuto extends LinearOpMode {
     public void autonomousPathUpdate() {
         switch (pathState) {
             case 0:
+
+                startShooter();
                 follower.followPath(Path1);
                 setPathState(1);
                 break;
+
             case 1:
-            /* You could check for
-            - Follower State: "if(!follower.isBusy()) {}"
-            - Time: "if(pathTimer.getElapsedTimeSeconds() > 1) {}"
-            - Robot Position: "if(follower.getPose().getX() > 36) {}"
-            */
-                /* This case checks the robot's position and will wait until the robot position is close (1 inch away) from the scorePose's position */
-                if (!follower.isBusy()) {
-                    /* Score Preload */
-                    /* Since this is a pathChain, we can have Pedro hold the end point while we are grabbing the sample */
-                    follower.followPath(Path2, true);
-                    setPathState(2);
+
+                if(!follower.isBusy()){
+
+                    if(flyWheelSubsystem.atTargetVelocity()){
+
+                        intakeSubsystem.openGate();
+
+                        intakeSubsystem.autoPower(
+                                TeleOpConstants.Intake.POWER
+                        );
+
+                        sleep(500);
+
+                        intakeSubsystem.stop();
+
+                        follower.followPath(Path2,true);
+
+                        startIntake();
+
+                        setPathState(2);
+                    }
                 }
+
                 break;
             case 2:
-            /* You could check for
-            - Follower State: "if(!follower.isBusy()) {}"
-            - Time: "if(pathTimer.getElapsedTimeSeconds() > 1) {}"
-            - Robot Position: "if(follower.getPose().getX() > 36) {}"
-            */
-                /* This case checks the robot's position and will wait until the robot position is close (1 inch away) from the scorePose's position */
-                if (!follower.isBusy()) {
-                    /* Score Preload */
-                    /* Since this is a pathChain, we can have Pedro hold the end point while we are grabbing the sample */
-                    follower.followPath(Path3, true);
+
+                if(!follower.isBusy()){
+
+                    stopIntake();
+
+                    startShooter();
+
+                    follower.followPath(Path3,true);
+
                     setPathState(3);
                 }
+
                 break;
 
             case 3:
-            /* You could check for
-            - Follower State: "if(!follower.isBusy()) {}"
-            - Time: "if(pathTimer.getElapsedTimeSeconds() > 1) {}"
-            - Robot Position: "if(follower.getPose().getX() > 36) {}"
-            */
-                /* This case checks the robot's position and will wait until the robot position is close (1 inch away) from the scorePose's position */
-                if (!follower.isBusy()) {
-                    /* Score Preload */
-                    /* Since this is a pathChain, we can have Pedro hold the end point while we are grabbing the sample */
-                    follower.followPath(Path4, true);
-                    setPathState(4);
+
+                if(!follower.isBusy()){
+
+                    if(flyWheelSubsystem.atTargetVelocity()){
+
+                        intakeSubsystem.autoPower(
+                                TeleOpConstants.Intake.POWER
+                        );
+
+                        sleep(500);
+
+                        intakeSubsystem.stop();
+
+                        follower.followPath(Path4,true);
+
+                        startIntake();
+
+                        setPathState(4);
+                    }
                 }
+
                 break;
 
 
             case 4:
-            /* You could check for
-            - Follower State: "if(!follower.isBusy()) {}"
-            - Time: "if(pathTimer.getElapsedTimeSeconds() > 1) {}"
-            - Robot Position: "if(follower.getPose().getX() > 36) {}"
-            */
-                /* This case checks the robot's position and will wait until the robot position is close (1 inch away) from the scorePose's position */
-                if (!follower.isBusy()) {
-                    /* Score Preload */
-                    /* Since this is a pathChain, we can have Pedro hold the end point while we are grabbing the sample */
-                    follower.followPath(Path5, true);
+
+                if(!follower.isBusy()){
+
+                    stopIntake();
+
+                    startShooter();
+
+                    follower.followPath(Path5,true);
+
                     setPathState(5);
                 }
+
                 break;
 
 
             case 5:
-            /* You could check for
-            - Follower State: "if(!follower.isBusy()) {}"
-            - Time: "if(pathTimer.getElapsedTimeSeconds() > 1) {}"
-            - Robot Position: "if(follower.getPose().getX() > 36) {}"
-            */
-                /* This case checks the robot's position and will wait until the robot position is close (1 inch away) from the scorePose's position */
-                if (!follower.isBusy()) {
-                    /* Score Preload */
-                    /* Since this is a pathChain, we can have Pedro hold the end point while we are grabbing the sample */
-                    follower.followPath(Path6, true);
-                    setPathState(6);
+
+                if(!follower.isBusy()){
+
+                    if(flyWheelSubsystem.atTargetVelocity()){
+
+                        intakeSubsystem.autoPower(
+                                TeleOpConstants.Intake.POWER
+                        );
+
+                        sleep(500);
+
+                        intakeSubsystem.stop();
+
+                        follower.followPath(Path6,true);
+
+                        startIntake();
+
+                        setPathState(6);
+                    }
                 }
+
                 break;
 
 
 
             case 6:
-            /* You could check for
-            - Follower State: "if(!follower.isBusy()) {}"
-            - Time: "if(pathTimer.getElapsedTimeSeconds() > 1) {}"
-            - Robot Position: "if(follower.getPose().getX() > 36) {}"
-            */
-                /* This case checks the robot's position and will wait until the robot position is close (1 inch away) from the scorePose's position */
-                if (!follower.isBusy()) {
-                    /* Score Preload */
-                    /* Since this is a pathChain, we can have Pedro hold the end point while we are grabbing the sample */
-                    follower.followPath(Path7, true);
+
+                if(!follower.isBusy()){
+
+                    stopIntake();
+
+                    startShooter();
+
+                    follower.followPath(Path7,true);
+
                     setPathState(7);
                 }
+
                 break;
 
 
             case 7:
-            /* You could check for
-            - Follower State: "if(!follower.isBusy()) {}"
-            - Time: "if(pathTimer.getElapsedTimeSeconds() > 1) {}"
-            - Robot Position: "if(follower.getPose().getX() > 36) {}"
-            */
-                /* This case checks the robot's position and will wait until the robot position is close (1 inch away) from the scorePose's position */
-                if (!follower.isBusy()) {
-                    /* Score Preload */
-                    /* Since this is a pathChain, we can have Pedro hold the end point while we are grabbing the sample */
-                    follower.followPath(Path8, true);
-                    setPathState(8);
+
+                if(!follower.isBusy()){
+
+                    stopIntake();
+
+//                    startShooter();
+
+                    follower.followPath(Path8,true);
+
+                    setPathState(9);
                 }
+
                 break;
 
 
@@ -301,6 +335,43 @@ public class RedAuto extends LinearOpMode {
         pathTimer.resetTimer();
     }
 
+
+    private void startShooter() {
+
+        flyWheelSubsystem.autoSetVelocity(
+                TeleOpConstants.Flywheel.FAR_VEL
+        );
+    }
+
+    private void stopShooter() {
+
+        flyWheelSubsystem.stop();
+    }
+
+    private void startIntake() {
+
+        intakeSubsystem.openGate();
+        intakeSubsystem.autoPower(
+                TeleOpConstants.Intake.POWER
+        );
+    }
+
+    private void stopIntake() {
+
+        intakeSubsystem.stop();
+    }
+
+    private void shootRing() {
+
+        if(flyWheelSubsystem.atTargetVelocity()) {
+
+            intakeSubsystem.openGate();
+
+            intakeSubsystem.autoPower(
+                    TeleOpConstants.Intake.POWER
+            );
+        }
+    }
 
 
 

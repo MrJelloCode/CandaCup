@@ -60,7 +60,13 @@ public class FlyWheelSubsystem {
     }
 
     public void autoSetVelocity(double targetVel){
+        enabled = true;
         this.targetVel = targetVel;
+    }
+
+    public void stop(){
+        enabled = false;
+        targetVel = 0;
     }
 
     public void update(){
