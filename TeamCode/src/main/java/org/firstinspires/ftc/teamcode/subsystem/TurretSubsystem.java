@@ -34,7 +34,12 @@ public class TurretSubsystem {
         turretMotor.setMode(DcMotorEx.RunMode.RUN_WITHOUT_ENCODER);
     }
 
-    public void update(Pose robotPose, double targetX, double targetY) {
+    public void update(
+            Pose robotPose,
+            double targetX,
+            double targetY,
+            double txCorrectionDeg
+    ) {
 
         if (manualMode) return;
 
@@ -49,7 +54,18 @@ public class TurretSubsystem {
 
         double fieldTargetAngle = Math.atan2(dy, dx);
 
-        double desiredTurretAngle = fieldTargetAngle - robotHeading;
+        double correctionDeg =
+                Range.clip(
+                        txCorrectionDeg,
+                        -TeleOpConstants.Turret.MAX_TX_FOR_CORRECTION,
+                        TeleOpConstants.Turret.MAX_TX_FOR_CORRECTION
+                )
+                        * TeleOpConstants.Turret.LL_CORRECTION_GAIN;
+
+        double desiredTurretAngle =
+                fieldTargetAngle
+                        - robotHeading
+                        + Math.toRadians(correctionDeg);
 
         while (desiredTurretAngle > Math.PI)
             desiredTurretAngle -= 2 * Math.PI;
@@ -65,7 +81,6 @@ public class TurretSubsystem {
 
         runPID();
     }
-
     /* ================= MANUAL ================= */
 
     public void manualControl(double stickInput) {

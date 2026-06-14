@@ -15,6 +15,7 @@ import org.firstinspires.ftc.teamcode.pedroPathing.Constants;
 import org.firstinspires.ftc.teamcode.subsystem.FlyWheelSubsystem;
 import org.firstinspires.ftc.teamcode.subsystem.HoodSubsystem;
 import org.firstinspires.ftc.teamcode.subsystem.IntakeSubsystem;
+import org.firstinspires.ftc.teamcode.subsystem.LimelightSubsystem;
 import org.firstinspires.ftc.teamcode.subsystem.PathStorage;
 import org.firstinspires.ftc.teamcode.subsystem.TurretSubsystem;
 
@@ -47,6 +48,7 @@ public class BlueAuto extends LinearOpMode {
     private FlyWheelSubsystem flyWheelSubsystem;
     private IntakeSubsystem intakeSubsystem;
     private TurretSubsystem turretSubsystem;
+    private LimelightSubsystem limelightSubsystem;
 
     private HoodSubsystem hoodSubsystem;
 
@@ -54,6 +56,8 @@ public class BlueAuto extends LinearOpMode {
         flyWheelSubsystem = new FlyWheelSubsystem(hardwareMap,gamepad2);
         intakeSubsystem  = new IntakeSubsystem(hardwareMap, gamepad2);
         turretSubsystem = new TurretSubsystem(hardwareMap);
+        limelightSubsystem = new LimelightSubsystem(hardwareMap);
+        limelightSubsystem.switchPipe(1);
         turretSubsystem.reset();
         hoodSubsystem = new HoodSubsystem(hardwareMap);
 
@@ -91,7 +95,13 @@ public class BlueAuto extends LinearOpMode {
             hoodSubsystem.update(pose, TeleOpConstants.Turret.BLUE_TARGET_Y, TeleOpConstants.Turret.BLUE_TARGET_Y);
 
 
-            turretSubsystem.update(follower.getPose(), TeleOpConstants.Turret.BLUE_TARGET_X, TeleOpConstants.Turret.BLUE_TARGET_Y);
+            double tx = 0;
+
+            if(limelightSubsystem.hasTarget()){
+                tx = limelightSubsystem.getTx();
+            }
+
+            turretSubsystem.update(follower.getPose(), TeleOpConstants.Turret.BLUE_TARGET_X, TeleOpConstants.Turret.BLUE_TARGET_Y,tx);
 
 
             // Feedback to Driver Hub for debugging
