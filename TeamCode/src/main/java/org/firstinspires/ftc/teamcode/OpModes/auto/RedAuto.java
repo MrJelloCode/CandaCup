@@ -451,23 +451,19 @@ public class RedAuto extends LinearOpMode {
 
 
     public void buildPaths() {
-
         Path1 = follower.pathBuilder()
                 .addPath(
                         new BezierLine(
-                                new Pose(122.446, 123.321),
-                                new Pose(96.595, 96.185)
-                        )
-                )
+                                new Pose(121.840, 123.523),
+                                new Pose(88.056, 84.017)
+                        )  )
                 .setLinearHeadingInterpolation(Math.toRadians(37), Math.toRadians(0))
                 .build();
-
         Path2 = follower.pathBuilder()
                 .addPath(
                         new BezierLine(
-                                new Pose(96.595, 96.185),
-                                new Pose(114.478, 96.165)
-                        )
+                                new Pose(88.056, 84.017),
+                                new Pose(129.555, 83.942)    )
                 )
                 .setTangentHeadingInterpolation()
                 .build();
@@ -475,19 +471,20 @@ public class RedAuto extends LinearOpMode {
         Path3 = follower.pathBuilder()
                 .addPath(
                         new BezierLine(
-                                new Pose(114.478, 96.165),
-                                new Pose(96.496, 96.084)
+                                new Pose(129.555, 83.942),
+                                new Pose(88.201, 83.950)
                         )
                 )
                 .setTangentHeadingInterpolation()
                 .setReversed()
                 .build();
-
         Path4 = follower.pathBuilder()
                 .addPath(
-                        new BezierLine(
-                                new Pose(96.496, 96.084),
-                                new Pose(96.865, 83.604)
+                        new BezierCurve(
+                                new Pose(88.201, 83.950),
+                                new Pose(90.795, 54.454),
+                                new Pose(104.183, 59.562),
+                                new Pose(135.475, 59.534)
                         )
                 )
                 .setTangentHeadingInterpolation()
@@ -496,55 +493,34 @@ public class RedAuto extends LinearOpMode {
         Path5 = follower.pathBuilder()
                 .addPath(
                         new BezierLine(
-                                new Pose(96.865, 83.604),
-                                new Pose(114.282, 83.111)
-                        )
-                )
-                .setTangentHeadingInterpolation()
-                .build();
-
-        Path6 = follower.pathBuilder()
-                .addPath(
-                        new BezierLine(
-                                new Pose(114.282, 83.111),
-                                new Pose(96.739, 95.656)
+                                new Pose(135.475, 59.534),
+                                new Pose(88.363, 83.607)
                         )
                 )
                 .setTangentHeadingInterpolation()
                 .setReversed()
                 .build();
-
+        Path6 = follower.pathBuilder()
+                .addPath(
+                        new BezierCurve(
+                                new Pose(88.363, 83.607),
+                                new Pose(92.322, 30.254),
+                                new Pose(89.475, 35.091),
+                                new Pose(134.595, 35.450)
+                        )
+                )
+                .setTangentHeadingInterpolation()
+                .build();
         Path7 = follower.pathBuilder()
                 .addPath(
                         new BezierLine(
-                                new Pose(96.739, 95.656),
-                                new Pose(96.902, 72.086)
-                        )
-                )
-                .setTangentHeadingInterpolation()
-                .build();
-
-        Path8 = follower.pathBuilder()
-                .addPath(
-                        new BezierLine(
-                                new Pose(96.902, 72.086),
-                                new Pose(119.647, 72.022)
-                        )
-                )
-                .setTangentHeadingInterpolation()
-                .build();
-
-        Path9 = follower.pathBuilder()
-                .addPath(
-                        new BezierLine(
-                                new Pose(119.647, 72.022),
-                                new Pose(96.696, 96.013)
+                                new Pose(134.595, 35.450),
+                                new Pose(88.412, 83.721)
                         )
                 )
                 .setTangentHeadingInterpolation()
                 .setReversed()
                 .build();
-
     }
 
 
