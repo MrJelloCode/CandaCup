@@ -173,7 +173,7 @@ public class RedAuto extends LinearOpMode {
                     if(pathTimer.getElapsedTimeSeconds() > PICKUP_SETTLE_TIME) {
 
                        stopIntake();
-
+                        intakeSubsystem.autoPower(0);
                         startShooter();
 
                         follower.followPath(Path3, true);
@@ -191,7 +191,7 @@ public class RedAuto extends LinearOpMode {
                     if(flyWheelSubsystem.atTargetVelocity()) {
 
                         if(!feedingBall) {
-
+                            intakeSubsystem.autoPower(0);
                             intakeSubsystem.openGate();
                             intakeSubsystem.autoPower(
                                     TeleOpConstants.Intake.POWER
@@ -225,9 +225,9 @@ public class RedAuto extends LinearOpMode {
                 if(!follower.isBusy()) {
 
                    stopIntake();
-
+                    intakeSubsystem.autoPower(0);
                     startShooter();
-
+                    intakeSubsystem.autoPower(0);
                     follower.followPath(Path5, true);
 
                     setPathState(5);
@@ -242,7 +242,7 @@ public class RedAuto extends LinearOpMode {
                     if(flyWheelSubsystem.atTargetVelocity()) {
 
                         if(!feedingBall) {
-
+                            intakeSubsystem.autoPower(0);
                             intakeSubsystem.openGate();
                             intakeSubsystem.autoPower(
                                     TeleOpConstants.Intake.POWER
@@ -277,8 +277,9 @@ public class RedAuto extends LinearOpMode {
                 if(!follower.isBusy()) {
 
                    stopIntake();
-
+                    intakeSubsystem.autoPower(0);
                     startShooter();
+                    intakeSubsystem.autoPower(0);
 
                     follower.followPath(Path7, true);
 
