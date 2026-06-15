@@ -57,7 +57,7 @@ public class BlueAuto extends LinearOpMode {
         intakeSubsystem  = new IntakeSubsystem(hardwareMap, gamepad2);
         turretSubsystem = new TurretSubsystem(hardwareMap);
         limelightSubsystem = new LimelightSubsystem(hardwareMap);
-        limelightSubsystem.switchPipe(1);
+        limelightSubsystem.switchPipe(2);
         turretSubsystem.reset();
         hoodSubsystem = new HoodSubsystem(hardwareMap);
 
