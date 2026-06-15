@@ -18,7 +18,7 @@ public class Constants {
   .headingPIDFCoefficients(new PIDFCoefficients(1.5, 0, 0.1, 0))
            .predictiveBrakingCoefficients(new PredictiveBrakingCoefficients(0.1, 0.06722866772459533
 
-                   , 0.0025071988797622014))
+           , 0.0025071988797622014))
 //            .centripetalScaling(0)
 
             ;

@@ -39,7 +39,9 @@ public class TeleOpConstants {
         public static String INTAKE_MOTOR_NAME = "intake";
         public static String GATE_SERVO_NAME = "gate";
 
-        public static double POWER = 1;
+        public static double TRANSFER_POWER = 0.4;
+        public static double INTAKE_POWER = 1;
+
 
         public static double GATE_OPEN = 0.05;
         public static double GATE_CLOSE = 0.19;

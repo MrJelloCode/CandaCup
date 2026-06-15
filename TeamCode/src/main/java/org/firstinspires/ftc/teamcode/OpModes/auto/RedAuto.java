@@ -92,7 +92,7 @@ public class RedAuto extends LinearOpMode {
             telemetry.addData("Pose state in Path Storage", PathStorage.getPose());
 //            intakeSubsystem.teleUpdate();
             flyWheelSubsystem.update();
-            intakeSubsystem.autoPower(TeleOpConstants.Intake.POWER);
+            intakeSubsystem.autoPower(TeleOpConstants.Intake.INTAKE_POWER);
 
             double tx = 0;
 
@@ -102,7 +102,7 @@ public class RedAuto extends LinearOpMode {
 
 
 
-            turretSubsystem.update(follower.getPose(), TeleOpConstants.Turret.RED_TARGET_X, TeleOpConstants.Turret.RED_TARGET_Y, tx);
+            turretSubsystem.update(follower.getPose(), TeleOpConstants.Turret.RED_TARGET_X, TeleOpConstants.Turret.RED_TARGET_Y, -tx);
             hoodSubsystem.update(follower.getPose(), TeleOpConstants.Turret.RED_TARGET_X, TeleOpConstants.Turret.RED_TARGET_Y);
 //            intakeSubsystem.closeGate();
 
@@ -139,7 +139,7 @@ public class RedAuto extends LinearOpMode {
 
                             intakeSubsystem.openGate();
                             intakeSubsystem.autoPower(
-                                    TeleOpConstants.Intake.POWER
+                                    TeleOpConstants.Intake.TRANSFER_POWER
                             );
 
                             feedingBall = true;
@@ -154,7 +154,7 @@ public class RedAuto extends LinearOpMode {
 
 
                             intakeSubsystem.autoPower(
-                                    TeleOpConstants.Intake.POWER
+                                    TeleOpConstants.Intake.INTAKE_POWER
                             );
                             follower.followPath(Path2, true);
 
@@ -194,7 +194,7 @@ public class RedAuto extends LinearOpMode {
                             intakeSubsystem.autoPower(0);
                             intakeSubsystem.openGate();
                             intakeSubsystem.autoPower(
-                                    TeleOpConstants.Intake.POWER
+                                    TeleOpConstants.Intake.TRANSFER_POWER
                             );
 
                             feedingBall = true;
@@ -208,7 +208,7 @@ public class RedAuto extends LinearOpMode {
                             feedingBall = false;
 
                             intakeSubsystem.autoPower(
-                                    TeleOpConstants.Intake.POWER
+                                    TeleOpConstants.Intake.INTAKE_POWER
                             );
                             follower.followPath(Path4, true);
 
@@ -245,7 +245,7 @@ public class RedAuto extends LinearOpMode {
                             intakeSubsystem.autoPower(0);
                             intakeSubsystem.openGate();
                             intakeSubsystem.autoPower(
-                                    TeleOpConstants.Intake.POWER
+                                    TeleOpConstants.Intake.TRANSFER_POWER
                             );
 
                             feedingBall = true;
@@ -261,7 +261,7 @@ public class RedAuto extends LinearOpMode {
 
 
                             intakeSubsystem.autoPower(
-                                    TeleOpConstants.Intake.POWER
+                                    TeleOpConstants.Intake.INTAKE_POWER
                             );
                             follower.followPath(Path6, true);
                             setPathState(6);
@@ -298,7 +298,7 @@ public class RedAuto extends LinearOpMode {
 
                             intakeSubsystem.openGate();
                             intakeSubsystem.autoPower(
-                                    TeleOpConstants.Intake.POWER
+                                    TeleOpConstants.Intake.TRANSFER_POWER
                             );
 
                             feedingBall = true;
@@ -428,7 +428,7 @@ public class RedAuto extends LinearOpMode {
 
         intakeSubsystem.openGate();
         intakeSubsystem.autoPower(
-                TeleOpConstants.Intake.POWER
+                TeleOpConstants.Intake.TRANSFER_POWER
         );
     }
 
@@ -444,7 +444,7 @@ public class RedAuto extends LinearOpMode {
             intakeSubsystem.openGate();
 
             intakeSubsystem.autoPower(
-                    TeleOpConstants.Intake.POWER
+                    TeleOpConstants.Intake.TRANSFER_POWER
             );
         }
     }
@@ -456,7 +456,7 @@ public class RedAuto extends LinearOpMode {
                 .addPath(
                         new BezierLine(
                                 new Pose(121.840, 123.523),
-                                new Pose(94.721, 89.672)
+                                new Pose(95.731, 94.115)
                         )
                 )
                 .setLinearHeadingInterpolation(Math.toRadians(37), Math.toRadians(0))
@@ -465,8 +465,8 @@ public class RedAuto extends LinearOpMode {
         Path2 = follower.pathBuilder()
                 .addPath(
                         new BezierLine(
-                                new Pose(94.721, 89.672),
-                                new Pose(130.363, 90.203)
+                                new Pose(95.731, 94.115),
+                                new Pose(118.851, 94.041)
                         )
                 )
                 .setTangentHeadingInterpolation()
@@ -475,8 +475,8 @@ public class RedAuto extends LinearOpMode {
         Path3 = follower.pathBuilder()
                 .addPath(
                         new BezierLine(
-                                new Pose(130.363, 90.203),
-                                new Pose(94.461, 88.191)
+                                new Pose(118.851, 94.041),
+                                new Pose(95.875, 94.048)
                         )
                 )
                 .setTangentHeadingInterpolation()
@@ -486,10 +486,10 @@ public class RedAuto extends LinearOpMode {
         Path4 = follower.pathBuilder()
                 .addPath(
                         new BezierCurve(
-                                new Pose(94.461, 88.191),
-                                new Pose(90.795, 71.823),
-                                new Pose(112.333, 69.146),
-                                new Pose(130.224, 70.238)
+                                new Pose(95.875, 94.048),
+                                new Pose(96.046, 93.231),
+                                new Pose(94.560, 75.205),
+                                new Pose(120.934, 77.711)
                         )
                 )
                 .setTangentHeadingInterpolation()
@@ -498,8 +498,8 @@ public class RedAuto extends LinearOpMode {
         Path5 = follower.pathBuilder()
                 .addPath(
                         new BezierLine(
-                                new Pose(130.224, 70.238),
-                                new Pose(94.422, 89.060)
+                                new Pose(120.934, 77.711),
+                                new Pose(96.038, 93.907)
                         )
                 )
                 .setTangentHeadingInterpolation()
@@ -509,10 +509,10 @@ public class RedAuto extends LinearOpMode {
         Path6 = follower.pathBuilder()
                 .addPath(
                         new BezierCurve(
-                                new Pose(94.422, 89.060),
-                                new Pose(92.928, 37.928),
-                                new Pose(93.110, 49.835),
-                                new Pose(132.979, 48.578)
+                                new Pose(96.038, 93.907),
+                                new Pose(92.903, 55.742),
+                                new Pose(92.504, 58.115),
+                                new Pose(128.940, 58.070)
                         )
                 )
                 .setTangentHeadingInterpolation()
@@ -521,8 +521,8 @@ public class RedAuto extends LinearOpMode {
         Path7 = follower.pathBuilder()
                 .addPath(
                         new BezierLine(
-                                new Pose(132.979, 48.578),
-                                new Pose(95.077, 87.356)
+                                new Pose(128.940, 58.070),
+                                new Pose(96.491, 94.021)
                         )
                 )
                 .setTangentHeadingInterpolation()

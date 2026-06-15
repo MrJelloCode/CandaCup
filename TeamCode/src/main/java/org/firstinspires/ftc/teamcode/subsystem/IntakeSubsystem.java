@@ -38,9 +38,9 @@ public class IntakeSubsystem {
 
     public void teleUpdate() {
         if (gamepad.right_trigger > 0.05) {
-            intake.setPower(TeleOpConstants.Intake.POWER);          // intake in, proportional
+            intake.setPower(TeleOpConstants.Intake.INTAKE_POWER);          // intake in, proportional
         } else if (gamepad.left_trigger > 0.05) {
-            intake.setPower(-TeleOpConstants.Intake.POWER);         // reverse out, proportional
+            intake.setPower(-TeleOpConstants.Intake.INTAKE_POWER);         // reverse out, proportional
         } else {
             intake.setPower(0);           // off
         }
