@@ -92,6 +92,7 @@ public class RedAuto extends LinearOpMode {
             telemetry.addData("Pose state in Path Storage", PathStorage.getPose());
 //            intakeSubsystem.teleUpdate();
             flyWheelSubsystem.update();
+            intakeSubsystem.autoPower(TeleOpConstants.Intake.POWER);
 
             double tx = 0;
 
@@ -103,7 +104,7 @@ public class RedAuto extends LinearOpMode {
 
             turretSubsystem.update(follower.getPose(), TeleOpConstants.Turret.RED_TARGET_X, TeleOpConstants.Turret.RED_TARGET_Y, tx);
             hoodSubsystem.update(follower.getPose(), TeleOpConstants.Turret.RED_TARGET_X, TeleOpConstants.Turret.RED_TARGET_Y);
-            intakeSubsystem.closeGate();
+//            intakeSubsystem.closeGate();
 
             // Feedback to Driver Hub for debugging
             telemetry.addData("path state", pathState);
@@ -147,7 +148,7 @@ public class RedAuto extends LinearOpMode {
 
                         if(pathTimer.getElapsedTimeSeconds() > FEED_TIME) {
 
-                            intakeSubsystem.stop();
+//                            intakeSubsystem.stop();
                             intakeSubsystem.closeGate();
                             feedingBall = false;
 
@@ -171,7 +172,7 @@ public class RedAuto extends LinearOpMode {
 
                     if(pathTimer.getElapsedTimeSeconds() > PICKUP_SETTLE_TIME) {
 
-                        stopIntake();
+//                        stopIntake();
 
                         startShooter();
 
@@ -202,7 +203,7 @@ public class RedAuto extends LinearOpMode {
 
                         if(pathTimer.getElapsedTimeSeconds() > FEED_TIME) {
 
-                            intakeSubsystem.stop();
+//                            intakeSubsystem.stop();
                             intakeSubsystem.closeGate();
                             feedingBall = false;
 
@@ -224,7 +225,7 @@ public class RedAuto extends LinearOpMode {
 
                 if(!follower.isBusy()) {
 
-                    stopIntake();
+//                    stopIntake();
 
                     startShooter();
 
@@ -275,7 +276,7 @@ public class RedAuto extends LinearOpMode {
 
                 if(!follower.isBusy()) {
 
-                    stopIntake();
+//                    stopIntake();
 
                     startShooter();
 
@@ -305,7 +306,7 @@ public class RedAuto extends LinearOpMode {
 
                         if(pathTimer.getElapsedTimeSeconds() > FEED_TIME) {
 
-                            intakeSubsystem.stop();
+//                            intakeSubsystem.stop();
                             intakeSubsystem.closeGate();
                             stopShooter();
 
