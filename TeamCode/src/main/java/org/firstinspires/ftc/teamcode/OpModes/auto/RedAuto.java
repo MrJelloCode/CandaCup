@@ -172,7 +172,7 @@ public class RedAuto extends LinearOpMode {
 
                     if(pathTimer.getElapsedTimeSeconds() > PICKUP_SETTLE_TIME) {
 
-//                        stopIntake();
+                       stopIntake();
 
                         startShooter();
 
@@ -224,7 +224,7 @@ public class RedAuto extends LinearOpMode {
 
                 if(!follower.isBusy()) {
 
-//                    stopIntake();
+                   stopIntake();
 
                     startShooter();
 
@@ -276,7 +276,7 @@ public class RedAuto extends LinearOpMode {
 
                 if(!follower.isBusy()) {
 
-//                    stopIntake();
+                   stopIntake();
 
                     startShooter();
 
@@ -455,7 +455,7 @@ public class RedAuto extends LinearOpMode {
                 .addPath(
                         new BezierLine(
                                 new Pose(121.840, 123.523),
-                                new Pose(88.056, 84.017)
+                                new Pose(94.721, 89.672)
                         )
                 )
                 .setLinearHeadingInterpolation(Math.toRadians(37), Math.toRadians(0))
@@ -464,8 +464,8 @@ public class RedAuto extends LinearOpMode {
         Path2 = follower.pathBuilder()
                 .addPath(
                         new BezierLine(
-                                new Pose(88.056, 84.017),
-                                new Pose(129.555, 83.942)
+                                new Pose(94.721, 89.672),
+                                new Pose(130.363, 90.203)
                         )
                 )
                 .setTangentHeadingInterpolation()
@@ -474,8 +474,8 @@ public class RedAuto extends LinearOpMode {
         Path3 = follower.pathBuilder()
                 .addPath(
                         new BezierLine(
-                                new Pose(129.555, 83.942),
-                                new Pose(88.201, 83.950)
+                                new Pose(130.363, 90.203),
+                                new Pose(94.461, 88.191)
                         )
                 )
                 .setTangentHeadingInterpolation()
@@ -485,10 +485,10 @@ public class RedAuto extends LinearOpMode {
         Path4 = follower.pathBuilder()
                 .addPath(
                         new BezierCurve(
-                                new Pose(88.201, 83.950),
-                                new Pose(90.795, 54.454),
-                                new Pose(104.183, 59.562),
-                                new Pose(135.475, 59.534)
+                                new Pose(94.461, 88.191),
+                                new Pose(90.795, 71.823),
+                                new Pose(112.333, 69.146),
+                                new Pose(130.224, 70.238)
                         )
                 )
                 .setTangentHeadingInterpolation()
@@ -497,8 +497,8 @@ public class RedAuto extends LinearOpMode {
         Path5 = follower.pathBuilder()
                 .addPath(
                         new BezierLine(
-                                new Pose(135.475, 59.534),
-                                new Pose(88.363, 83.607)
+                                new Pose(130.224, 70.238),
+                                new Pose(94.422, 89.060)
                         )
                 )
                 .setTangentHeadingInterpolation()
@@ -508,10 +508,10 @@ public class RedAuto extends LinearOpMode {
         Path6 = follower.pathBuilder()
                 .addPath(
                         new BezierCurve(
-                                new Pose(88.363, 83.607),
-                                new Pose(92.322, 30.254),
-                                new Pose(89.475, 35.091),
-                                new Pose(134.595, 35.450)
+                                new Pose(94.422, 89.060),
+                                new Pose(92.928, 37.928),
+                                new Pose(93.110, 49.835),
+                                new Pose(132.979, 48.578)
                         )
                 )
                 .setTangentHeadingInterpolation()
@@ -520,8 +520,8 @@ public class RedAuto extends LinearOpMode {
         Path7 = follower.pathBuilder()
                 .addPath(
                         new BezierLine(
-                                new Pose(134.595, 35.450),
-                                new Pose(88.412, 83.721)
+                                new Pose(132.979, 48.578),
+                                new Pose(95.077, 87.356)
                         )
                 )
                 .setTangentHeadingInterpolation()

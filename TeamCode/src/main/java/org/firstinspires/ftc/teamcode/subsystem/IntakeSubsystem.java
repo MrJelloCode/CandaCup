@@ -59,6 +59,6 @@ public class IntakeSubsystem {
         }    }
 
     public void autoPower(double power){
-        intake.setPower(power);
+        intake.setPower(-power);
     }
 }
