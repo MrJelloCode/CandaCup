@@ -148,12 +148,15 @@ public class RedAuto extends LinearOpMode {
                         if(pathTimer.getElapsedTimeSeconds() > FEED_TIME) {
 
                             intakeSubsystem.stop();
-
+                            intakeSubsystem.closeGate();
                             feedingBall = false;
 
                             follower.followPath(Path2, true);
+                            intakeSubsystem.autoPower(
+                                    TeleOpConstants.Intake.POWER
+                            );
 
-                            startIntake();
+
 
                             setPathState(2);
                         }
@@ -200,12 +203,14 @@ public class RedAuto extends LinearOpMode {
                         if(pathTimer.getElapsedTimeSeconds() > FEED_TIME) {
 
                             intakeSubsystem.stop();
-
+                            intakeSubsystem.closeGate();
                             feedingBall = false;
 
                             follower.followPath(Path4, true);
 
-                            startIntake();
+                            intakeSubsystem.autoPower(
+                                    TeleOpConstants.Intake.POWER
+                            );
 
                             setPathState(4);
                         }
@@ -250,13 +255,14 @@ public class RedAuto extends LinearOpMode {
                         if(pathTimer.getElapsedTimeSeconds() > FEED_TIME) {
 
                             intakeSubsystem.stop();
-
+                            intakeSubsystem.closeGate();
                             feedingBall = false;
 
                             follower.followPath(Path6, true);
 
-                            startIntake();
-
+                            intakeSubsystem.autoPower(
+                                    TeleOpConstants.Intake.POWER
+                            );
                             setPathState(6);
                         }
                     }
@@ -300,7 +306,7 @@ public class RedAuto extends LinearOpMode {
                         if(pathTimer.getElapsedTimeSeconds() > FEED_TIME) {
 
                             intakeSubsystem.stop();
-
+                            intakeSubsystem.closeGate();
                             stopShooter();
 
                             feedingBall = false;
