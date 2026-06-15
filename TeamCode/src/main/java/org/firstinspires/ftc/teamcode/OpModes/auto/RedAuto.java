@@ -152,11 +152,11 @@ public class RedAuto extends LinearOpMode {
                             intakeSubsystem.closeGate();
                             feedingBall = false;
 
-                            follower.followPath(Path2, true);
+
                             intakeSubsystem.autoPower(
                                     TeleOpConstants.Intake.POWER
                             );
-
+                            follower.followPath(Path2, true);
 
 
                             setPathState(2);
@@ -207,11 +207,10 @@ public class RedAuto extends LinearOpMode {
                             intakeSubsystem.closeGate();
                             feedingBall = false;
 
-                            follower.followPath(Path4, true);
-
                             intakeSubsystem.autoPower(
                                     TeleOpConstants.Intake.POWER
                             );
+                            follower.followPath(Path4, true);
 
                             setPathState(4);
                         }
@@ -259,11 +258,12 @@ public class RedAuto extends LinearOpMode {
                             intakeSubsystem.closeGate();
                             feedingBall = false;
 
-                            follower.followPath(Path6, true);
+
 
                             intakeSubsystem.autoPower(
                                     TeleOpConstants.Intake.POWER
                             );
+                            follower.followPath(Path6, true);
                             setPathState(6);
                         }
                     }
