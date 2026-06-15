@@ -54,6 +54,10 @@ public class RedAuto extends LinearOpMode {
     private LimelightSubsystem limelightSubsystem;
     private HoodSubsystem hoodSubsystem;
 
+    private boolean feedingBall = false;
+    private static final double FEED_TIME = 3;
+    private static final double PICKUP_SETTLE_TIME = 0.50;
+
     public void runOpMode() {
         flyWheelSubsystem = new FlyWheelSubsystem(hardwareMap,gamepad2);
         intakeSubsystem  = new IntakeSubsystem(hardwareMap, gamepad2);
@@ -86,7 +90,7 @@ public class RedAuto extends LinearOpMode {
             autonomousPathUpdate();
             PathStorage.setPose(follower.getPose());
             telemetry.addData("Pose state in Path Storage", PathStorage.getPose());
-            intakeSubsystem.teleUpdate();
+//            intakeSubsystem.teleUpdate();
             flyWheelSubsystem.update();
 
             double tx = 0;
@@ -99,6 +103,7 @@ public class RedAuto extends LinearOpMode {
 
             turretSubsystem.update(follower.getPose(), TeleOpConstants.Turret.RED_TARGET_X, TeleOpConstants.Turret.RED_TARGET_Y, tx);
             hoodSubsystem.update(follower.getPose(), TeleOpConstants.Turret.RED_TARGET_X, TeleOpConstants.Turret.RED_TARGET_Y);
+            intakeSubsystem.closeGate();
 
             // Feedback to Driver Hub for debugging
             telemetry.addData("path state", pathState);
@@ -125,63 +130,85 @@ public class RedAuto extends LinearOpMode {
 
             case 1:
 
-                if(!follower.isBusy()){
+                if(!follower.isBusy()) {
 
-                    if(flyWheelSubsystem.atTargetVelocity()){
+                    if(flyWheelSubsystem.atTargetVelocity()) {
 
-                        intakeSubsystem.openGate();
+                        if(!feedingBall) {
 
-                        intakeSubsystem.autoPower(
-                                TeleOpConstants.Intake.POWER
-                        );
+                            intakeSubsystem.openGate();
+                            intakeSubsystem.autoPower(
+                                    TeleOpConstants.Intake.POWER
+                            );
 
-                        sleep(3000);
+                            feedingBall = true;
+                            pathTimer.resetTimer();
+                        }
 
-                        intakeSubsystem.stop();
+                        if(pathTimer.getElapsedTimeSeconds() > FEED_TIME) {
 
-                        follower.followPath(Path2,true);
+                            intakeSubsystem.stop();
 
-                        startIntake();
+                            feedingBall = false;
 
-                        setPathState(2);
+                            follower.followPath(Path2, true);
+
+                            startIntake();
+
+                            setPathState(2);
+                        }
                     }
                 }
 
                 break;
+
             case 2:
 
-                if(!follower.isBusy()){
-                    sleep(3000);
-                    stopIntake();
+                if(!follower.isBusy()) {
 
-                    startShooter();
+                    if(pathTimer.getElapsedTimeSeconds() > PICKUP_SETTLE_TIME) {
 
-                    follower.followPath(Path3,true);
+                        stopIntake();
 
-                    setPathState(3);
+                        startShooter();
+
+                        follower.followPath(Path3, true);
+
+                        setPathState(3);
+                    }
                 }
 
                 break;
 
             case 3:
 
-                if(!follower.isBusy()){
+                if(!follower.isBusy()) {
 
-                    if(flyWheelSubsystem.atTargetVelocity()){
+                    if(flyWheelSubsystem.atTargetVelocity()) {
 
-                        intakeSubsystem.autoPower(
-                                TeleOpConstants.Intake.POWER
-                        );
+                        if(!feedingBall) {
 
-                        sleep(500);
+                            intakeSubsystem.openGate();
+                            intakeSubsystem.autoPower(
+                                    TeleOpConstants.Intake.POWER
+                            );
 
-                        intakeSubsystem.stop();
+                            feedingBall = true;
+                            pathTimer.resetTimer();
+                        }
 
-                        follower.followPath(Path4,true);
+                        if(pathTimer.getElapsedTimeSeconds() > FEED_TIME) {
 
-                        startIntake();
+                            intakeSubsystem.stop();
 
-                        setPathState(4);
+                            feedingBall = false;
+
+                            follower.followPath(Path4, true);
+
+                            startIntake();
+
+                            setPathState(4);
+                        }
                     }
                 }
 
@@ -190,73 +217,99 @@ public class RedAuto extends LinearOpMode {
 
             case 4:
 
-                if(!follower.isBusy()){
+                if(!follower.isBusy()) {
 
                     stopIntake();
 
                     startShooter();
 
-                    follower.followPath(Path5,true);
+                    follower.followPath(Path5, true);
 
                     setPathState(5);
                 }
 
                 break;
 
-
             case 5:
 
-                if(!follower.isBusy()){
+                if(!follower.isBusy()) {
 
-                    if(flyWheelSubsystem.atTargetVelocity()){
+                    if(flyWheelSubsystem.atTargetVelocity()) {
 
-                        intakeSubsystem.autoPower(
-                                TeleOpConstants.Intake.POWER
-                        );
+                        if(!feedingBall) {
 
-                        sleep(300);
+                            intakeSubsystem.openGate();
+                            intakeSubsystem.autoPower(
+                                    TeleOpConstants.Intake.POWER
+                            );
 
-                        intakeSubsystem.stop();
+                            feedingBall = true;
+                            pathTimer.resetTimer();
+                        }
 
-                        follower.followPath(Path6,true);
+                        if(pathTimer.getElapsedTimeSeconds() > FEED_TIME) {
 
-                        startIntake();
+                            intakeSubsystem.stop();
 
-                        setPathState(6);
+                            feedingBall = false;
+
+                            follower.followPath(Path6, true);
+
+                            startIntake();
+
+                            setPathState(6);
+                        }
                     }
                 }
 
                 break;
 
 
-
             case 6:
 
-                if(!follower.isBusy()){
+                if(!follower.isBusy()) {
 
                     stopIntake();
 
                     startShooter();
 
-                    follower.followPath(Path7,true);
+                    follower.followPath(Path7, true);
 
                     setPathState(7);
                 }
 
                 break;
 
-
             case 7:
 
-                if(!follower.isBusy()){
+                if(!follower.isBusy()) {
 
-                    stopIntake();
+                    if(flyWheelSubsystem.atTargetVelocity()) {
 
-//                    startShooter();
+                        if(!feedingBall) {
 
-                    follower.followPath(Path8,true);
+                            intakeSubsystem.openGate();
+                            intakeSubsystem.autoPower(
+                                    TeleOpConstants.Intake.POWER
+                            );
 
-                    setPathState(9);
+                            feedingBall = true;
+                            pathTimer.resetTimer();
+                        }
+
+                        if(pathTimer.getElapsedTimeSeconds() > FEED_TIME) {
+
+                            intakeSubsystem.stop();
+
+                            stopShooter();
+
+                            feedingBall = false;
+
+                            follower.followPath(Path8, true);
+
+                            setPathState(9);
+                        }
+                    }
                 }
 
                 break;
