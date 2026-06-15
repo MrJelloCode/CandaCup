@@ -126,7 +126,7 @@ public class RedTeleOp extends OpMode {
                     pose,
                     TeleOpConstants.Turret.RED_TARGET_X,
                     TeleOpConstants.Turret.RED_TARGET_Y,
-                    tx
+                    -tx
             );
         }
         else{

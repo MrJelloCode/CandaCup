@@ -126,7 +126,7 @@ public class BlueTeleOp extends OpMode {
                     pose,
                     TeleOpConstants.Turret.BLUE_TARGET_X,
                     TeleOpConstants.Turret.BLUE_TARGET_Y,
-                    tx
+                    -tx
             );
         }
         else{

@@ -24,13 +24,8 @@ import org.firstinspires.ftc.teamcode.subsystem.PathStorage;
 @Autonomous(name = "RedAuto")
 public class RedAuto extends LinearOpMode {
     private boolean shooting = false;
-    private boolean feeding = false;
     private final Pose startPose = new Pose(123.546, 122.109, Math.toRadians(37));// Start Pose of our robot. This is against the goal facing AWAY
-    private final Pose scorePose = new Pose(54.112, 84.087); // Scoring Pose of our robot.
-    private final Pose drinkFromFountain = new Pose(11.803, 61.585, Math.toRadians(146)); // Highest (First Set) of Artifacts from the Spike Mark.
-    private final Pose pickup2Pose = new Pose(12, 60, Math.toRadians(180)); // Middle (Second Set) of Artifacts from the Spike Mark.
-    private final Pose pickup3Pose = new Pose(12, 36, Math.toRadians(180)); // Lowest (Third Set) of Artifacts from the Spike Mark.
-    private final Pose endPose = new Pose(60, 105); // Final Pose of our robot, off the starting line
+
     private Follower follower;
     public PathChain Path1;
     public PathChain Path2;
@@ -123,6 +118,7 @@ public class RedAuto extends LinearOpMode {
     public void autonomousPathUpdate() {
         switch (pathState) {
             case 0:
+                intakeSubsystem.closeGate();
 
                 startShooter();
                 follower.followPath(Path1);
@@ -132,6 +128,10 @@ public class RedAuto extends LinearOpMode {
             case 1:
 
                 if(!follower.isBusy()) {
+
+                    if(!feedingBall) {
+                        intakeSubsystem.closeGate();
+                    }
 
                     if(flyWheelSubsystem.atTargetVelocity()) {
 
@@ -148,16 +148,13 @@ public class RedAuto extends LinearOpMode {
 
                         if(pathTimer.getElapsedTimeSeconds() > FEED_TIME) {
 
-//                            intakeSubsystem.stop();
                             intakeSubsystem.closeGate();
                             feedingBall = false;
-
 
                             intakeSubsystem.autoPower(
                                     TeleOpConstants.Intake.INTAKE_POWER
                             );
                             follower.followPath(Path2, true);
-
 
                             setPathState(2);
                         }
